@@ -1,0 +1,10 @@
+node_modules
+npm-debug.log
+yarn-error.log
+.nuxt
+.env
+dist
+prod
+.idea
+static/sw.js
+.vscode

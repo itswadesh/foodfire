@@ -1,0 +1,64 @@
+{
+  "name": "foodfire",
+  "version": "1.0.0",
+  "description": "Get awesome food delivered at your home",
+  "author": "Swadesh Behera",
+  "private": true,
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development nuxt",
+    "d": "nuxt",
+    "prod": "run-s build copy",
+    "start": "cross-env NODE_ENV=production nuxt start",
+    "generate": "nuxt generate",
+    "build": "nuxt build",
+    "copy": "node copy-dist-files.js"
+  },
+  "dependencies": {
+    "@firebase/app": "^0.3.4",
+    "@firebase/firestore": "^0.8.1",
+    "@nuxtjs/component-cache": "^1.1.2",
+    "@nuxtjs/dotenv": "^1.1.1",
+    "@nuxtjs/google-analytics": "^2.0.2",
+    "@nuxtjs/toast": "^3.0.1",
+    "cookie": "^0.3.1",
+    "cookie-universal-nuxt": "^2.0.5",
+    "cross-env": "^5.2.0",
+    "firebase": "^5.5.1",
+    "helmet": "^3.13.0",
+    "js-cookie": "^2.2.0",
+    "nuxt": "^2.0.0",
+    "nuxt-buefy": "^0.2.1",
+    "nuxt-client-init-module": "^0.1.4",
+    "nuxt-robots-module": "^1.3.0",
+    "socket.io-client": "^2.1.1",
+    "vue-firestore": "^0.2.9",
+    "vuefire": "^2.0.0-alpha.15"
+  },
+  "devDependencies": {
+    "@nuxtjs/feed": "^0.1.1",
+    "@nuxtjs/pwa": "^2.6.0",
+    "@nuxtjs/sitemap": "^0.1.1",
+    "copy-dir": "^0.4.0",
+    "glob-all": "^3.1.0",
+    "node-sass": "^4.9.0",
+    "npm-run-all": "^4.1.3",
+    "purgecss-webpack-plugin": "^1.3.0",
+    "vue-lazyload": "^1.2.6",
+    "webpack-node-externals": "^1.7.2"
+  },
+  "config": {
+    "nuxt": {
+      "host": "0.0.0.0",
+      "port": "3000"
+    }
+  },
+  "engines": {
+    "node": ">=10.x",
+    "npm": ">=6.x"
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions",
+    "not ie <= 8"
+  ]
+}
