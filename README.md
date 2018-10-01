@@ -3,9 +3,9 @@
 
 ## Static Generated Progressive e-commerce app using NuxtJS + Firebase
 
-![Home Page Image](http://joxi.ru/krD5xdatE5jPZm)
-![Cart Image](http://joxi.ru/v29kN9bf3qy0qr)
-![Order Processing Page](http://joxi.ru/EA436E0CwqEJ52)
+![Home Page Image](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/home.jpg?raw=true)
+![Cart Image](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/cart.jpg?raw=true)
+![Order Processing Page](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/orders.jpg?raw=true)
 
 ## Quick start
 > Make sure you have **Node** version >= 10.x, **NPM** >= 6.x
@@ -22,7 +22,7 @@ cd foodfire
 ### serve with hot reload at localhost:3000
 `yarn dev`
 
-## build and deploy to Netlify
+## Deploy to Netlify
 ### Getting Started
 > Press the "New site from Git" button on the Netlify dashboard. Authenticate with your repository host, select a repository to deploy, and continue. You should land on step 3: "Build options, and deploy!"
 
