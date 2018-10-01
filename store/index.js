@@ -10,13 +10,15 @@ export const mutations = {
     this.$toast.success(msg).goAway(2000);
   },
   setErr(state, err) {
-    console.log('global error at [store/index].....', err);
+    // console.log('global error at [store/index].....', err);
+    const duration = err.duration || 3000
+    const message = err.message || err
     if (err && err.response) {
-      this.$toast.error(err.response.data).goAway(2000);
+      this.$toast.error(err.response.data).goAway(duration);
       throw err.response.data
     }
     else {
-      this.$toast.error(err).goAway(2000);
+      this.$toast.error(message).goAway(duration);
       throw err // When it can not communicate to server
     }
   },

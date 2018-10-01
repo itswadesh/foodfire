@@ -28,9 +28,9 @@ export const actions = {
             commit('setErr', err, { root: true })
         }
     },
-    async googleSignIn({ commit }, payload) {
+    async googleSignIn({ commit }) {
         const vm = this
-        firebase.auth().signInWithPopup(googleAuthProvider)
+        return firebase.auth().signInWithPopup(googleAuthProvider)
             .then(function (result) {
                 var token = result.credential.accessToken;
                 var user = result.user;
@@ -39,9 +39,9 @@ export const actions = {
                 vm.$cookies.set('Authorization', token, { path: '/', maxAge: tokenExpiry })
             }).catch(function (error) {
                 var errorCode = error.code;
-                var errorMessage = error.message;
                 var email = error.email;
                 var credential = error.credential;
+                commit('setErr', { message: error.message, duration: 15000 }, { root: true })
             });
     },
     async googleSignOut({ commit }, payload) {

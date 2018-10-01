@@ -73,24 +73,31 @@ export default {
       googleSignIn: "auth/googleSignIn"
     }),
 
-    placeOrder() {
+    async placeOrder() {
       if (this.getTotal == 0) return;
-      let user = this.user;
       if (!this.user) {
-        this.googleSignIn();
+        try {
+          await this.googleSignIn();
+          this.askAddress();
+        } catch (e) {}
       } else {
-        this.$dialog.prompt({
-          confirmText: "Confirm Order",
-          message: `Address:`,
-          inputAttrs: {
-            value: user.address,
-            placeholder: "Y-1, Sector-18"
-          },
-          onConfirm: address => {
-            this.checkout({ address });
-          }
-        });
+        this.askAddress();
       }
+    },
+    askAddress() {
+      console.log("Ask address");
+      let user = this.user;
+      this.$dialog.prompt({
+        confirmText: "Confirm Order",
+        message: `Address:`,
+        inputAttrs: {
+          value: user.address,
+          placeholder: "Y-1, Sector-18"
+        },
+        onConfirm: address => {
+          this.checkout({ address });
+        }
+      });
     }
   }
 };
