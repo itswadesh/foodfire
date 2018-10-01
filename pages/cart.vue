@@ -37,7 +37,7 @@
             <h2 class="big">{{getTotal | currency}}</h2>
           </div>
           <div class="column">
-            <a class="button is-danger is-rounded is-big" :disabled="getTotal==0" @click="placeOrder()">Place Order</a>
+            <a class="button is-danger is-rounded is-big" :disabled="getTotal==0 || loading" @click="placeOrder()">Place Order</a>
           </div>
         </div>
         <div class="columns is-mobile">
@@ -53,6 +53,11 @@ import { mapState, mapGetters, mapActions } from "vuex";
 const CartButtons = () => import("~/components/CartButtons");
 
 export default {
+  data() {
+    return {
+      loading: false
+    };
+  },
   components: { CartButtons },
   computed: {
     user() {
@@ -74,18 +79,23 @@ export default {
     }),
 
     async placeOrder() {
+      if (this.loading) return;
       if (this.getTotal == 0) return;
+      this.loading = true;
       if (!this.user) {
         try {
           await this.googleSignIn();
+          this.loading = false;
           this.askAddress();
-        } catch (e) {}
+        } catch (e) {
+          this.loading = false;
+        }
       } else {
         this.askAddress();
       }
     },
     askAddress() {
-      console.log("Ask address");
+      this.loading = true;
       let user = this.user;
       this.$dialog.prompt({
         confirmText: "Confirm Order",
@@ -96,6 +106,10 @@ export default {
         },
         onConfirm: address => {
           this.checkout({ address });
+          this.loading = false;
+        },
+        onCancel: res => {
+          this.loading = false;
         }
       });
     }
