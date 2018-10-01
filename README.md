@@ -1,5 +1,5 @@
 
-# FoodFire - Vue2.x + Nuxt2.x + Node10.x + Fireabase
+# FoodFire - Nuxt2.x + Fireabase + Vue2.x
 
 ## Static Generated Progressive e-commerce app using NuxtJS + Firebase
 
@@ -43,16 +43,15 @@ YARN_VERSION: 1.10.1
 ## Features
 
 ### Coding & Deployment
+  - Using firebase `firestore` database with realtime update
   - Single page progressive ecommerce app using VueJs
-  - 100 light house score (PWA)
   - Offline enabled
   - Progressive images with lazy loading
   - All assets(js,css,images) are precached for a faster user experience
   - Modular coding structure
-  - Easy deployment to production server
+  - Auto deploy to Netlify production server
   - Better and cleaner JavaScript code
   - Simplified installation and configuration
-  - Installable without app store
   - Reliable: Load fast and provide offline experience
   - Fast: Respond quickly to user actions
   - Engaging: Feel like a native app on mobile devices
