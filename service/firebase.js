@@ -1,16 +1,11 @@
 import { firebase } from "@firebase/app";
 import { auth } from "firebase";
 import "@firebase/firestore";
+import { apiKey,projectId,authDomain } from '~/config';
+
 // let firebaseApp = null
 if (!firebase.apps.length) {
-  firebase.initializeApp({
-    apiKey: process.env.apiKey,
-    authDomain: process.env.authDomain,
-    projectId: process.env.projectId,
-    databaseURL: process.env.databaseURL,
-    storageBucket: process.env.storageBucket,
-    messagingSenderId: process.env.messagingSenderId
-  });
+  firebase.initializeApp({ apiKey,projectId,authDomain });
 }
 let db = firebase.firestore();
 // Disable deprecated features

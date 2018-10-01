@@ -1,11 +1,12 @@
 const pkg = require('./package')
 
 module.exports = {
+  apiKey:'AIzaSyDBM8REAXrMtwLbO0Dv1iL6hEaU-jzVdFk',
+  projectId:'vueshop-30fea',
+  authDomain: "vueshop-30fea.firebaseapp.com",
   ANALYTICS_TRACKING_ID: 'UA-49421899-3',
   clearCart: true, // Whether to clear the cart after order is placed. Useful while testing
-
   currency: { symbol: '₹', code: 'INR' },
-
   manifest: {
     name: 'Foodfire',
     short_name: 'Foodfire',
