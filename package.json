@@ -3,15 +3,12 @@
   "version": "1.0.0",
   "description": "Get awesome food delivered at your home",
   "author": "Swadesh Behera",
-  "private": true,
+  "private": false,
   "scripts": {
     "dev": "cross-env NODE_ENV=development nuxt",
-    "d": "nuxt",
-    "prod": "run-s build copy",
-    "start": "cross-env NODE_ENV=production nuxt start",
+    "prod": "nuxt build",
     "generate": "nuxt generate",
-    "build": "nuxt build",
-    "copy": "node copy-dist-files.js"
+    "start": "cross-env NODE_ENV=production nuxt start"
   },
   "dependencies": {
     "@firebase/app": "^0.3.4",
@@ -38,7 +35,6 @@
     "@nuxtjs/feed": "^0.1.1",
     "@nuxtjs/pwa": "^2.6.0",
     "@nuxtjs/sitemap": "^0.1.1",
-    "copy-dir": "^0.4.0",
     "glob-all": "^3.1.0",
     "node-sass": "^4.9.0",
     "npm-run-all": "^4.1.3",
