@@ -1,8 +1,8 @@
 const pkg = require('./package')
 
 module.exports = {
-  apiKey:'AIzaSyDBM8REAXrMtwLbO0Dv1iL6hEaU-jzVdFk',
-  projectId:'vueshop-30fea',
+  apiKey: 'AIzaSyDBM8REAXrMtwLbO0Dv1iL6hEaU-jzVdFk',
+  projectId: 'vueshop-30fea',
   authDomain: "vueshop-30fea.firebaseapp.com",
   ANALYTICS_TRACKING_ID: 'UA-49421899-3',
   clearCart: true, // Whether to clear the cart after order is placed. Useful while testing
@@ -56,7 +56,7 @@ module.exports = {
       {
         hid: 'og:url',
         property: 'og:url',
-        content: 'https://foodfire.in',
+        content: 'https://foodfire.info',
       },
     ],
     noscript: [{ innerHTML: `We're sorry but Foodfire doesn't work properly without JavaScript enabled. Please enable it to continue.` }],

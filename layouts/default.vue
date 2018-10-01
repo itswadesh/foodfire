@@ -4,7 +4,7 @@
       <div class="navbar-brand">
         <a class="navbar-item" href="/">
           <img
-            src="~assets/FoodFireLogo.png"
+            src="~static/logo.png"
             alt="FoodFire"
             height="28">
         </a>
@@ -66,3 +66,8 @@ export default {
   }
 };
 </script>
+<style scoped>
+.navbar-item img {
+  max-height: 2.3rem;
+}
+</style>

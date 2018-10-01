@@ -1,7 +1,7 @@
 
 # FoodFire - Nuxt2.x + Fireabase + Vue2.x
 
-## Static Generated Progressive e-commerce app using NuxtJS + Firebase
+## Static Generated Progressive food delivery web app using NuxtJS + Firebase
 
 ![Home Page Image](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/home.jpg?raw=true)
 ![Cart Image](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/cart.jpg?raw=true)
