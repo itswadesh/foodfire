@@ -5,7 +5,7 @@ module.exports = {
   head,
   manifest,
   loading: '~/components/Loading.vue',
-  css: ['~assets/styles/transitions.css'],
+  css: ['~assets/styles/reset.css', '~assets/styles/transitions.css'],
   plugins: [
     '~/plugins/filters.js',
     '~/plugins/firestore.js'
@@ -19,7 +19,7 @@ module.exports = {
     '@nuxtjs/toast',
     'nuxt-client-init-module',
     'cookie-universal-nuxt',
-    'nuxt-buefy', ['@nuxtjs/google-analytics', { id: ANALYTICS_TRACKING_ID }]
+    ['@nuxtjs/google-analytics', { id: ANALYTICS_TRACKING_ID }]
   ],
   toast: {
     theme: "bubble",

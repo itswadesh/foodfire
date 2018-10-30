@@ -2260,12 +2260,6 @@ copy-descriptor@^0.1.0:
   version "0.1.1"
   resolved "https://registry.yarnpkg.com/copy-descriptor/-/copy-descriptor-0.1.1.tgz#676f6eb3c39997c2ee1ac3a924fd6124748f578d"
 
-copy-dir@^0.4.0:
-  version "0.4.0"
-  resolved "https://registry.yarnpkg.com/copy-dir/-/copy-dir-0.4.0.tgz#bb7f603890ec20bf14678cbd6735fa46fc156be7"
-  dependencies:
-    mkdir-p "~0.0.4"
-
 core-js@2.5.5:
   version "2.5.5"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-2.5.5.tgz#b14dde936c640c0579a6b50cabcc132dd6127e3b"
@@ -4611,10 +4605,6 @@ mixin-deep@^1.2.0:
   dependencies:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
-
-mkdir-p@~0.0.4:
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/mkdir-p/-/mkdir-p-0.0.7.tgz#24c5dbe26da3a99ef158a1eef9a5c2dd9de5683c"
 
 mkdirp@0.5.1, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkdirp@~0.5.1:
   version "0.5.1"

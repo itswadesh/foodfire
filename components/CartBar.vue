@@ -1,15 +1,20 @@
 <template>
-  <div>
-    {{getTotal}}
-    <router-link class="cart-bar" to="/cart" v-if="getTotal>0">
-      <div>
-        {{getTotalCount}} items | {{getTotal | currency}}
+  <footer class="footer">
+    <nav class="navbar header has-shadow is-primary">
+      <div class="headeralign1 shadow" style="color:white;">
+        <div style="padding-left: 13px;">
+          <span>
+            {{getTotalCount}} items | {{getTotal | currency}}
+          </span>
+        </div>
+        <div class="navbar-brand1 ">
+          <router-link class="navbar-item1 a1 " style="color:white" to="/cart">
+            VIEW CART
+          </router-link>
+        </div>
       </div>
-      <div>
-        <b-icon icon="cart"></b-icon> VIEW CART
-      </div>
-    </router-link>
-  </div>
+    </nav>
+  </footer>
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -27,19 +32,121 @@ export default {
 </script>
 
 <style scoped>
-.cart-bar {
-  left: 0;
-  right: 0;
-  bottom: 0;
-  position: fixed;
+.navbar-item img {
+  max-height: 2.3rem;
+}
+
+.navbar-brand1,
+.navbar-tabs {
+  align-items: stretch;
   display: flex;
-  width: 100%;
-  padding: 20px;
-  background: #60b246;
-  color: #fff;
-  z-index: 2;
-  font-weight: bold;
+  flex-shrink: 0;
+  min-height: 3.25rem;
+}
+
+.navbar.has-shadow {
+  box-shadow: 0 2px 0 0 #f5f5f5;
+}
+.navbar.is-primary {
+  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+}
+.navbar {
+  background-color: #fff;
+  min-height: 3.25rem;
+
+  z-index: 30;
+}
+
+.navbar.is-primary .navbar-brand > a.navbar-item:hover {
+  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+}
+
+img {
+  height: auto;
+  max-width: 100%;
+}
+.navbar-item img {
+  max-height: 1.75rem;
+}
+a {
+  color: #3273dc;
+  cursor: pointer;
+  text-decoration: none;
+}
+.navbar-menu {
+  background-color: #fff;
+  box-shadow: 0 8px 16px rgba(10, 10, 10, 0.1);
+  padding: 0.5rem 0;
+  display: none;
+}
+
+.navbar-link,
+a.navbar-item {
+  cursor: pointer;
+}
+.navbar-item1,
+.navbar-link {
+  color: #4a4a4a;
+  display: block;
+  line-height: 1.5;
+  padding: 0.5rem 0.75rem;
+
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.section {
+  padding: 3rem 1.5rem;
+}
+
+.hero.is-primary .subtitle {
+  color: hsla(0, 0%, 100%, 0.9);
+}
+.title:not(.is-spaced) + .subtitle {
+  margin-top: -1.25rem;
+}
+
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+section {
+  display: block;
+}
+
+profile .card-profile-image img {
+  -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.07) !important;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
+}
+
+.imgsize {
+  width: 128px;
+  height: 90px;
+  margin-left: -20px;
+}
+
+.shadow,
+.profile-page .card-profile .card-profile-image img {
+  -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.07) !important;
+  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
+}
+.a1 {
+  display: flex;
+  align-items: center;
+}
+.headeralign1 {
+  display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
 }
 </style>

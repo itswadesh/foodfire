@@ -1,5 +1,6 @@
 <template>
   <div v-if="settings[0]">
+    <nav-bar />
     <hero :closed="settings[0].closed" />
     <info />
     <products :products="products" />
@@ -14,7 +15,7 @@ const Products = () => import("~/components/Products");
 const Info = () => import("~/components/Info");
 const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
-
+const NavBar = () => import("~/components/NavBar");
 import { db } from "~/service/firebase";
 export default {
   data() {
@@ -40,9 +41,8 @@ export default {
       this.$firestore.reptiles.doc(reptile[".key"]).delete();
     }
   },
-  async created() {
-  },
-  components: { Overlay, Products, Info, Hero, CartBar }
+  async created() {},
+  components: { Overlay, Products, Info, Hero, CartBar, NavBar }
 };
 </script>
 <style scoped>
