@@ -1,16 +1,12 @@
 <template>
 
   <body>
-    <div>
-      <div>
-        <img src="~/static/hero.jpeg" />
-        <div class="heading">
-          <a
-            class="link link--move"
-            data-letters="Foodfire"
-          >foodfire</a>
-        </div>
-      </div>
+    <img src="~/static/hero.jpeg" />
+    <div class="heading">
+      <div
+        class="link link--move"
+        data-letters="Foodfire"
+      >Foodfire</div>
     </div>
   </body>
 </template>

@@ -3,7 +3,10 @@
     <nav-bar />
     <hero :closed="settings[0].closed" />
     <info />
-    <products :products="products" :showcart="true" />
+    <products
+      :products="products"
+      :showcart="true"
+    />
     <overlay :closed="settings[0].closed" />
     <cart-bar />
   </div>
@@ -44,25 +47,3 @@ export default {
   components: { Overlay, Products, Info, Hero, CartBar, NavBar }
 };
 </script>
-<style scoped>
-.green {
-  color: green;
-}
-.grey {
-  color: grey;
-}
-.pt3 {
-  padding-top: 3px;
-}
-.mb-36 {
-  margin-bottom: -36px;
-}
-.auto {
-  display: block;
-  padding: 5px;
-  margin-top: 5px;
-  width: 100%;
-  height: 341px;
-  overflow: auto;
-}
-</style>

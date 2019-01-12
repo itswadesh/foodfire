@@ -1,13 +1,19 @@
 <template>
   <div>
     <nav-bar />
-        <center>View Details</center>
-          <products :products="cartItems" v-if="cartItems!=0" :showcart="false" />
+    <center class="title">
+      <strong>View Details</strong>
+    </center>
+    <products
+      :products="cartItems"
+      v-if="cartItems!=0"
+      :showcart="false"
+    />
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-import CartButtonsVue from "../components/CartButtons.vue";
+import CartButtonsVue from "~/components/CartButtons.vue";
 const Products = () => import("~/components/Products");
 const NavBar = () => import("~/components/NavBar");
 export default {

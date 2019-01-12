@@ -1,23 +1,27 @@
 <template>
   <div class="products">
-    <div class="product" :class="{'border':ix!=0}"
+    <div
+      class="product"
+      :class="{'border':ix!=0}"
       v-for="(p,ix) in products"
-      :key="p['.key']"    >
-                <p class="image">
-                  <img :src="p.img" alt=""/>
-                </p>
-              <div class="content">
-                <strong>{{p.name}}</strong>
-            </div>
-            <div class="price-align ">
-              <div>
-                <h1 class="big">{{p.price | currency}}</h1>
-              </div>
-                <cart-buttons
-                  :product="{_id:p['.key'] || p._id,name:p.name,img:p.img,price:p.price}"
-                  v-if="showcart"
-                />
-            </div>
+      :key="p['.key']"
+    >
+      <div class="image">
+        <img
+          v-lazy="p.img"
+          alt=""
+        />
+      </div>
+      <div class="content">
+        <strong>{{p.name}}</strong>
+      </div>
+      <div class="price-align">
+        <div class="big">{{p.price | currency}}</div>
+        <cart-buttons
+          :product="{_id:p['.key'] || p._id,name:p.name,img:p.img,price:p.price}"
+          v-if="showcart"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -49,46 +53,31 @@ export default {
 </script>
 
 <style scoped>
-.products{
-  margin:0 1rem;
+.products {
+  margin: 0 1rem;
 }
 .product {
   align-items: flex-start;
   display: flex;
   text-align: left;
-  padding-top:1rem;
-}
-.mb-36 {
-  /* margin-bottom: -36px; */
+  padding-top: 1rem;
 }
 .pt3 {
   padding-top: 3px;
 }
 .content {
-  flex:1;
+  flex: 1;
+  margin-top: 5px;
 }
 strong {
   color: #363636;
   font-weight: 700;
-  font-family: Karla, Roboto, sans-serif;
 }
 .image {
-  display: block;
   width: 104px;
-  position: relative;
 }
-.hero-body,
-.section {
-  padding: 0rem 1.5rem;
-}
-article,
-aside,
-figure,
-footer,
-header,
-hgroup,
-section {
-  display: block;
+.image img {
+  border-radius: 50px;
 }
 figure {
   margin: 0;
@@ -99,8 +88,12 @@ media-right {
   flex-grow: 0;
   flex-shrink: 0;
 }
-.border{
+.border {
   border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
+}
+.price-align {
+  text-align: right;
+  margin-top: 5px;
 }
 .big {
   font-size: 1.5em;
@@ -109,15 +102,8 @@ media-right {
 h1 {
   font-size: 100%;
   font-weight: 400;
-  font-family: Karla, Roboto, sans-serif;
   text-transform: uppercase;
   letter-spacing: -1px;
-}
-.price-align {
-  text-align:right;
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
 }
 </style>
 

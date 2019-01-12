@@ -1,19 +1,8 @@
 <template>
   <div>
     <nav-bar />
-
     <div class="pstn">
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="60"
-        height="60"
-        viewBox="0 0 24 24"
-      >
-        <path
-          d="M0 0h24v24H0z"
-          fill="none"
-        />
-        <path d="M20 8h-3V4H3c-1.1 0-2 .9-2 2v11h2c0 1.66 1.34 3 3 3s3-1.34 3-3h6c0 1.66 1.34 3 3 3s3-1.34 3-3h2v-5l-3-4zM6 18.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm13.5-9l1.96 2.5H17V9.5h2.5zm-1.5 9c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5z" /></svg>
+      <img src="truck.svg" />
       <h4 class="text-white">
         Order Status
       </h4>
@@ -25,7 +14,7 @@
       <div class="p-5">
         <div class="row align-items-center">
           <div class="col-lg-8">
-            <h1
+            <div
               class="card border-0 shadow-lg bg"
               v-for="o in orders"
               :key="o._id"
@@ -88,49 +77,24 @@
                   </div>
                 </div>
               </div>
-              <div class="columns is-mobile">
-                <div>
-                  <div
-                    class="rows is-mobile"
-                    v-for="(i,ix) in o.items"
-                    :key="ix"
-                  >
-                    <div class="media-content">
-                      <div class="content">
-                        <strong class="front">{{ix+1}} - {{i.name}}</strong>
-                        <small class="front">{{i.price | currency}} (<strong>{{i.qty}}</strong>)</small>
-                      </div>
+              <div>
+                <div
+                  v-for="(i,ix) in o.items"
+                  :key="ix"
+                >
+                  <div class="media-content">
+                    <div class="content">
+                      <strong class="front">{{ix+1}} - {{i.name}}</strong>
+                      <small class="front">{{i.price | currency}} (<strong>{{i.qty}}</strong>)</small>
                     </div>
                   </div>
                 </div>
               </div>
-            </h1>
+            </div>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-lg-3 ml-lg-auto">
-      <a
-        type
-        class="btn btn-block btn-white1 btn-lg btncontent"
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          class="svg2"
-        >
-          <path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z" />
-          <path
-            d="M0 0h24v24H0z"
-            fill="none"
-          /></svg>
-        <router-link
-          to="/viewdetails"
-          class="btnclr"
-        >Back To Cart</router-link>
-      </a></div>
   </div>
 </template>
 <script >

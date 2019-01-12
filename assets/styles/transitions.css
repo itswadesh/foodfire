@@ -1,6 +1,3 @@
-body{
-  font-family: 'Karla', Roboto, sans-serif
-}
 .page-enter-active, .page-leave-active {
   transition: opacity .5s
 }

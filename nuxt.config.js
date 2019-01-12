@@ -8,7 +8,8 @@ module.exports = {
   css: ['~assets/styles/reset.css', '~assets/styles/transitions.css'],
   plugins: [
     '~/plugins/filters.js',
-    '~/plugins/firestore.js'
+    '~/plugins/firestore.js',
+    { src: '~plugins/lazy', ssr: false }
   ],
   modules: [
     '@nuxtjs/sitemap',

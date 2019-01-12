@@ -2,6 +2,9 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
+body{
+  font-family: 'Karla', Roboto, sans-serif
+}
 html, body, ul, ol, fieldset {
   margin: 0;
   padding: 0;
@@ -89,4 +92,9 @@ h1 {
 }
 button {
   cursor: pointer;
+}
+.title {
+  font-size: 28px;
+  padding: 1rem;
+  border-bottom: 1px solid #ccc;
 }
