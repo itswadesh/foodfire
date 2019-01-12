@@ -7,25 +7,25 @@
             <div class="columns is-mobile">
               <div class="column">
                 <p class="grey">Delivery time</p>
-                <p>60 minutes</p>
+                <div>45 minutes</div>
               </div>
               <div class="column">
                 <p class="grey">Delivery free</p>
-                <p>above 50 </p>
+                <div>above {{50 | currency}}</div>
               </div>
             </div>
             <div class="columns is-mobile">
               <div class="column">
                 <p class="grey">Delivery hours</p>
-                <p>11:30AM - 1:30AM</p>
+                <div>11:30AM - 10:30PM</div>
               </div>
               <div class="column">
                 <p class="grey">Minimum order</p>
-                <p>{{0.000 | currency}}</p>
+                <div>{{0 | currency}}</div>
               </div>
             </div>
-            <div class="columns">
-              <center class="green">
+            <div class="green">
+              <center>
                 <b>Delivery is now open</b>
               </center>
             </div>
@@ -38,31 +38,28 @@
 <script>
 export default {};
 </script>
-
 <style scoped>
 .message {
   background-color: #f5f5f5;
   border-radius: 4px;
   font-size: 1rem;
 }
-
 .message-body {
   border-radius: 4px;
   border: solid #dbdbdb;
-  border-width: 0 0 0 4px;
+  border-width: 0 0 0 0px;
   color: #4a4a4a;
   padding: 1.25em 1.5em;
 }
-
 .media-content {
   flex-basis: auto;
   flex-grow: 1;
   flex-shrink: 1;
   text-align: left;
+  padding-top: 23px;
 }
 .columns.is-mobile {
   display: flex;
-  padding-left: 50px;
 }
 .column {
   display: block;
@@ -73,9 +70,12 @@ export default {};
 .grey {
   color: grey;
 }
-
 .green {
   color: green;
+  margin-top:1.5rem;
+}
+p{
+  margin-bottom:5px;
 }
 </style>
 

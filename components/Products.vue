@@ -1,30 +1,23 @@
 <template>
-  <div style="background-color: #fefcfc;">
-    <div>
-      <div class="card shadow-lg--hover topposition shadow" v-for="p in products" :key="p['.key']">
-        <div class="card-body">
-          <div class="px-3">
-            <div class="flex ">
-              <div>
-                <div class="imgsize">
-                  <img :src="p.img">
-                </div>
-              </div>
-              <div class="mdl-algn">
-                <h1 class="text-success">{{p.name}}
-                </h1>
-                <P class="description">
-                  <small>{{p.description}}</small>
-                </P>
-              </div>
-              <div class="alignprice">
-                <h2>{{p.price | currency}}</h2>
-                <cart-buttons :product="{_id:p['.key'] || p._id,name:p.name,img:p.img,price:p.price}" />
-              </div>
+  <div class="products">
+    <div class="product" :class="{'border':ix!=0}"
+      v-for="(p,ix) in products"
+      :key="p['.key']"    >
+                <p class="image">
+                  <img :src="p.img" alt=""/>
+                </p>
+              <div class="content">
+                <strong>{{p.name}}</strong>
             </div>
-          </div>
-        </div>
-      </div>
+            <div class="price-align ">
+              <div>
+                <h1 class="big">{{p.price | currency}}</h1>
+              </div>
+                <cart-buttons
+                  :product="{_id:p['.key'] || p._id,name:p.name,img:p.img,price:p.price}"
+                  v-if="showcart"
+                />
+            </div>
     </div>
   </div>
 </template>
@@ -33,7 +26,7 @@ import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
 const CartButtons = () => import("~/components/CartButtons");
 
 export default {
-  props: ["products"],
+  props: ["products", "showcart"],
 
   components: { CartButtons },
   methods: {
@@ -56,80 +49,75 @@ export default {
 </script>
 
 <style scoped>
-.description {
-  margin-top: 4px;
-  color: #ccc;
-  font-size: 12px;
+.products{
+  margin:0 1rem;
 }
-.card-body {
-  -webkit-box-flex: 1;
-  -ms-flex: 1 1 auto;
-  flex: 1 1 auto;
-}
-.px-3 {
-  padding-left: 1rem !important;
-}
-.imgsize {
-  width: 128px;
-  height: 90px;
-  padding-left: 0px;
-}
-
-.text-success {
-  color: #2dce89 !important;
-}
-.flex {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: row;
-  align-items: center;
+.product {
   align-items: flex-start;
-}
-
-.alignprice {
-  margin-bottom: 0.5rem;
-  font-family: inherit;
-  font-weight: 400;
-  line-height: 0.3;
-  color: #32325d;
-  font-size: 14px;
-  padding-right: 10px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  text-align: left;
+  padding-top:1rem;
 }
-
-.topposition {
-  margin-top: 7.1px !important;
+.mb-36 {
+  /* margin-bottom: -36px; */
 }
-.shadow,
-.profile-page .card-profile .card-profile-image img {
-  -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
-    0 5px 15px rgba(0, 0, 0, 0.07) !important;
-  box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
+.pt3 {
+  padding-top: 3px;
 }
-.card {
+.content {
+  flex:1;
+}
+strong {
+  color: #363636;
+  font-weight: 700;
+  font-family: Karla, Roboto, sans-serif;
+}
+.image {
+  display: block;
+  width: 104px;
   position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-  border-radius: 0.25rem;
-  position: relative;
+}
+.hero-body,
+.section {
+  padding: 0rem 1.5rem;
+}
+article,
+aside,
+figure,
+footer,
+header,
+hgroup,
+section {
+  display: block;
+}
+figure {
+  margin: 0;
+  padding: 0;
+}
+media-right {
+  flex-basis: auto;
+  flex-grow: 0;
+  flex-shrink: 0;
+}
+.border{
+  border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
+}
+.big {
+  font-size: 1.5em;
+  font-weight: 700;
 }
 h1 {
-  font-size: 13px;
-  letter-spacing: 2px;
+  font-size: 100%;
   font-weight: 400;
-  font-family: inherit;
+  font-family: Karla, Roboto, sans-serif;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+.price-align {
+  text-align:right;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
 }
 </style>
 

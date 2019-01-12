@@ -8,7 +8,6 @@
     <!-- <p>Loading...</p> -->
   </div>
 </template>
-
 <script>
 export default {
   data: () => ({
@@ -24,7 +23,6 @@ export default {
   }
 };
 </script>
-
 <style scoped>
 .spinner {
   transition: opacity 0.15s ease;
@@ -133,7 +131,6 @@ export default {
     transform: rotate(450deg);
   }
 }
-
 .loading-page {
   position: fixed;
   top: 0;

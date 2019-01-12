@@ -3,13 +3,11 @@
     <b>Sorry we are closed now.</b>
   </div>
 </template>
-
 <script>
 export default {
   props: ["closed"]
 };
 </script>
-
 <style scoped>
 .spinner {
   transition: opacity 0.15s ease;
@@ -118,7 +116,6 @@ export default {
     transform: rotate(450deg);
   }
 }
-
 .loading-page {
   position: fixed;
   top: 0;

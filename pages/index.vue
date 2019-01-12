@@ -3,12 +3,11 @@
     <nav-bar />
     <hero :closed="settings[0].closed" />
     <info />
-    <products :products="products" />
+    <products :products="products" :showcart="true" />
     <overlay :closed="settings[0].closed" />
     <cart-bar />
   </div>
 </template>
-
 <script>
 const Overlay = () => import("~/components/Overlay");
 const Products = () => import("~/components/Products");
@@ -57,5 +56,13 @@ export default {
 }
 .mb-36 {
   margin-bottom: -36px;
+}
+.auto {
+  display: block;
+  padding: 5px;
+  margin-top: 5px;
+  width: 100%;
+  height: 341px;
+  overflow: auto;
 }
 </style>

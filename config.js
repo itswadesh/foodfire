@@ -38,11 +38,11 @@ module.exports = {
         property: 'og:description',
         content: pkg.description,
       },
-      {
-        property: "og:image",
-        content:
-          "https://s3.envato.com/files/252462089/banner.png"
-      },
+      // {
+      //   property: "og:image",
+      //   content:
+      //     "https://s3.envato.com/files/252462089/banner.png"
+      // },
       {
         hid: 'twitter:title',
         property: 'twitter:title',

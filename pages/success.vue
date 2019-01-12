@@ -89,12 +89,10 @@ export default {
   padding-bottom: 20px;
   text-align: center;
 }
-
 .amount {
   font-weight: bold;
   color: red;
 }
-
 .container {
   width: 100%;
   padding-top: 21px;
@@ -103,7 +101,6 @@ export default {
   margin-right: auto;
   margin-left: auto;
 }
-
 .bg-gradient-warning {
   background: linear-gradient(87deg, #699b66 0, #68ea6c 100%) !important;
 }
@@ -211,13 +208,11 @@ export default {
   justify-content: center;
   align-items: center;
 }
-
 a {
   color: #3273dc;
   cursor: pointer;
   text-decoration: none;
 }
-
 h1 {
   margin-bottom: 0.5rem;
   font-family: inherit;
@@ -226,7 +221,6 @@ h1 {
   color: #32325d;
   font-size: 20px;
 }
-
 .shadow,
 .profile-page .card-profile .card-profile-image img {
   -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),

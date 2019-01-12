@@ -1,20 +1,50 @@
 <template>
-  <footer class="footer">
-    <nav class="navbar header has-shadow is-primary">
-      <div class="headeralign1 shadow" style="color:white;">
-        <div style="padding-left: 13px;">
-          <span>
-            {{getTotalCount}} items | {{getTotal | currency}}
-          </span>
+  <div>
+    <footer
+      class="footer"
+      v-if="getTotalCount!=0"
+    >
+      <nav class="navbar header has-shadow is-primary">
+        <div
+          class="headeralign1 shadow"
+          style="color:white;"
+        >
+          <div style="padding-left: 13px;">
+            <span>
+              {{getTotalCount}} item<span v-if="getTotalCount>1">s</span> | {{getTotal | currency}}
+            </span>
+          </div>
+          <div class="navbar-brand1 ">
+            <router-link
+              class="navbar-item1 a1 "
+              style="color:white"
+              to="/cart"
+            >
+              <div class="center">
+                <div class="cart-icon1">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="22"
+                    height="22"
+                    class="crl"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    /></svg>
+                </div>
+                <div>
+                  VIEW CART
+                </div>
+              </div>
+            </router-link>
+          </div>
         </div>
-        <div class="navbar-brand1 ">
-          <router-link class="navbar-item1 a1 " style="color:white" to="/cart">
-            VIEW CART
-          </router-link>
-        </div>
-      </div>
-    </nav>
-  </footer>
+      </nav>
+    </footer>
+  </div>
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -30,20 +60,21 @@ export default {
   }
 };
 </script>
-
 <style scoped>
+.crl {
+  fill: white;
+}
 .navbar-item img {
   max-height: 2.3rem;
 }
-
 .navbar-brand1,
 .navbar-tabs {
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
   min-height: 3.25rem;
 }
-
 .navbar.has-shadow {
   box-shadow: 0 2px 0 0 #f5f5f5;
 }
@@ -53,14 +84,11 @@ export default {
 .navbar {
   background-color: #fff;
   min-height: 3.25rem;
-
   z-index: 30;
 }
-
 .navbar.is-primary .navbar-brand > a.navbar-item:hover {
   background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
 }
-
 img {
   height: auto;
   max-width: 100%;
@@ -79,7 +107,6 @@ a {
   padding: 0.5rem 0;
   display: none;
 }
-
 .navbar-link,
 a.navbar-item {
   cursor: pointer;
@@ -90,21 +117,18 @@ a.navbar-item {
   display: block;
   line-height: 1.5;
   padding: 0.5rem 0.75rem;
-
   flex-grow: 0;
   flex-shrink: 0;
 }
 .section {
   padding: 3rem 1.5rem;
 }
-
 .hero.is-primary .subtitle {
   color: hsla(0, 0%, 100%, 0.9);
 }
 .title:not(.is-spaced) + .subtitle {
   margin-top: -1.25rem;
 }
-
 article,
 aside,
 figure,
@@ -114,19 +138,16 @@ hgroup,
 section {
   display: block;
 }
-
 profile .card-profile-image img {
   -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
     0 5px 15px rgba(0, 0, 0, 0.07) !important;
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
 }
-
 .imgsize {
   width: 128px;
   height: 90px;
   margin-left: -20px;
 }
-
 .shadow,
 .profile-page .card-profile .card-profile-image img {
   -webkit-box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1),
@@ -148,5 +169,14 @@ profile .card-profile-image img {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+.cart-icon1 {
+  padding-right: 6px;
+  margin-top: 5px;
+}
+.center {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
 }
 </style>

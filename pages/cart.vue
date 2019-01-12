@@ -1,67 +1,110 @@
 <template>
-
-  <body>
-    <div>
-      <div>
-        <nav-bar />
-      </div>
-      <br />
+  <div>
+    <div class="header">
+      <nav-bar />
+    </div>
+    <div class="headalign">
+      <center><b>My Cart</b></center>
+    </div>
+    <div class="auto">
       <center v-if="cartItems.length==0">
         <div class="container">
           <div class="card border-0 shadow-lg bg">
             <div class="p-5">
               <div class="row align-items-center">
                 <div class="col-lg-8">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
-                    <path d="M0 0h24v24H0zm18.31 6l-2.76 5z" fill="none" />
-                    <path d="M11 9h2V6h3V4h-3V1h-2v3H8v2h3v3zm-4 9c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zm10 0c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2zm-9.83-3.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.86-7.01L19.42 4h-.01l-1.1 2-2.76 5H8.53l-.13-.27L6.16 6l-.95-2-.94-2H1v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.13 0-.25-.11-.25-.25z" />
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="grey"
+                    width="50"
+                    height="50"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      d="M0 0h24v24H0z"
+                      fill="none"
+                    />
+                    <path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
                   </svg>
                   <h2>
                     Please go back to Restaurant menu and add some food to continue...</h2>
                 </div>
                 <div class="col-lg-3 ml-lg-auto">
-                  <a type class="btn btn-block btn-white btn-lg btncontent">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" class="svg2">
+                  <a
+                    type
+                    class="btn btn-block btn-white btn-lg btncontent"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="24"
+                      height="24"
+                      viewBox="0 0 24 24"
+                      class="svg2"
+                    >
                       <path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z" />
-                      <path d="M0 0h24v24H0z" fill="none" /></svg>
-                    <router-link to="/" class="btnclr">Back to Menu</router-link>
+                      <path
+                        d="M0 0h24v24H0z"
+                        fill="none"
+                      /></svg>
+                    <router-link
+                      to="/"
+                      class="btnclr"
+                    >Back to Menu</router-link>
                   </a></div>
               </div>
             </div>
           </div>
         </div>
       </center>
-      <products v-else :products="cartItems" />
-
-      <div class="cart-total">
-        <div class="container2">
-          <div class="card border-0 shadow-lg2 bg">
-            <div>
-              <div class="columns is-mobile">
-                <div class="column align">
-                  <p class="grey">Total Amount</p>
-                  <h2 class="big">{{getTotal | currency}}</h2>
+      <products
+        v-else
+        :products="cartItems"
+        :showcart="true"
+      />
+    </div>
+    <div>
+      <a v-if="!cartItems.length==0">
+        <div class="cart-total footer">
+          <div class="container2 ">
+            <div class="card border-0 shadow-lg2 bg w100">
+              <div>
+                <div class="columns is-mobile">
+                  <div class="column align">
+                    <div class="amount_align">
+                      <p class="grey">Total Amount</p>
+                    </div>
+                    <div>
+                      <h2 class="big">{{getTotal | currency}}</h2>
+                    </div>
+                  </div>
+                  <div class="column">
+                    <a
+                      type
+                      class="btn btn-block btn-white btn-lg btncontent "
+                      :disabled="getTotal==0 || loading"
+                      @click="placeOrder()"
+                      style="color:white"
+                    >Place Order</a>
+                  </div>
                 </div>
-                <div class="column center ">
-                  <a type class="btn btn-block btn-white btn-lg btncontent " :disabled="getTotal==0 || loading" @click="placeOrder()" style="color:white">Place Order</a>
+                <div class="columns is-mobile">
+                  <p class="green">Please allow us 45mins for delivery</p>
                 </div>
+                <div class="cart-total-after"> </div>
               </div>
-              <div class="columns is-mobile center">
-                <p class="green">Please allow us 45mins for delivery</p>
-              </div>
-              <div class="cart-total-after"> </div>
             </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
-  </body>
+  </div>
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 const Products = () => import("~/components/Products");
 const NavBar = () => import("~/components/NavBar");
 export default {
+  props: ["products"],
   data() {
     return {
       loading: false
@@ -78,13 +121,15 @@ export default {
       cartItems: state => state.cart.items || []
     }),
     ...mapGetters({
+      checkCart: "cart/checkCart",
       getTotal: "cart/getTotal"
     })
   },
   methods: {
     ...mapActions({
       checkout: "cart/checkout",
-      googleSignIn: "auth/googleSignIn"
+      googleSignIn: "auth/googleSignIn",
+      addToCart: "cart/addToCart"
     }),
 
     async placeOrder() {
@@ -125,11 +170,20 @@ export default {
   }
 };
 </script>
-
 <style scoped>
+.navpostn {
+  position: fixed;
+}
+.headalign {
+  font-size: 20px;
+  padding-top: 70px;
+  padding-bottom:1rem;
+  border-bottom:1px solid #ccc
+}
 .align {
   display: flex;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
 }
 .svg2 {
   fill: white;
@@ -192,6 +246,7 @@ export default {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
@@ -205,12 +260,12 @@ export default {
   position: relative;
 }
 .p-5 {
-  padding: 3rem !important;
+  padding: 2rem 3rem;
 }
 .align-items-center {
-  -webkit-box-align: center !important;
-  -ms-flex-align: center !important;
-  align-items: center !important;
+  -webkit-box-align: center;
+  -ms-flex-align: center;
+  align-items: center;
 }
 .row {
   display: -webkit-box;
@@ -283,7 +338,6 @@ export default {
 .shadow-lg2 {
   box-shadow: 0 -1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
-
 a {
   color: #3273dc;
   cursor: pointer;
@@ -295,4 +349,37 @@ a {
     0 5px 15px rgba(0, 0, 0, 0.07) !important;
   box-shadow: 0 15px 35px rgba(50, 50, 93, 0.1), 0 5px 15px rgba(0, 0, 0, 0.07) !important;
 }
+.amount_align {
+  display: flex;
+  align-self: baseline;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.header {
+  position: fixed;
+  left: 0;
+  right: 0;
+}
+.auto {
+  display: block;
+  padding: 5px;
+  margin-top: 5px;
+  width: 100%;
+  height: 341px;
+  overflow: auto;
+}
+h2{
+  margin-bottom:2rem;
+  color: #777;
+}
+.w100{
+  width:100%;
+  padding:0 1.5rem;
+}
 </style>
+
