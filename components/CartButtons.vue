@@ -4,80 +4,25 @@
       v-if="!checkCart({_id:product._id})"
       @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:1});"
     >
-        <button
-          class="button1 buttonrounded1 btnalign"
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            class="addalign"
-          >
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path>
-          </svg>
-        </button>
-      <!-- <button class="button button.is-danger buttonrounded ">
-        <div class="center">
-          <div class="cart-icon">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="16"
-              height="16"
-              viewBox="0 0 24 24"
-            >
-              <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path> <path d="M0 0h24v24H0z" fill="none"></path>
-            </svg>
-          </div>
-          <div>
-            <h2 class="cartposition">Add to Cart</h2>
-          </div>
-        </div>
-      </button> -->
+      <button class="button1 buttonrounded1 btnalign">
+        <img src="/plus.svg" />
+      </button>
+
     </div>
     <div v-else>
       <div class="size1">
         <button
-          class="button1 buttonrounded1 btnalign"
+          class="button1 buttonrounded1 "
           @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:-1});"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="22"
-            height="24"
-            viewBox="0 0 24 24"
-            class="addalign"
-          >
-            <path d="M19 13H5v-2h14v2z"></path>
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            >
-            </path>
-          </svg>
+          <img src="/minus.svg" />
         </button>
         <span class="size2">{{getQty({_id:product._id})}}</span>
         <button
-          class="button1 button.is-danger buttonrounded1 btnplus-clr btnalign"
+          class="button1 button.is-danger buttonrounded1 btnplus-clr"
           @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:1});"
         >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="24"
-            height="24"
-            viewBox="0 0 24 24"
-            class="addalign"
-          >
-            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"></path>
-            <path
-              d="M0 0h24v24H0z"
-              fill="none"
-            ></path>
-          </svg>
+          <img src="/plus.svg" />
         </button>
       </div>
     </div>
@@ -118,7 +63,7 @@ export default {
 }
 .buttonrounded1 {
   border-radius: 50px;
-  width: 31px;
+  width: 33px;
 }
 .button.is-danger {
   border-color: transparent;
@@ -169,32 +114,24 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding-left: 4px;
+  padding-top: 10px;
 }
-.cartposition {
-  padding-left: 0px;
-  font-size: 13px;
-  margin-top: 5px;
-  padding-right: 5px;
-}
-.plus {
+/* .plus {
   font-size: 25px;
   margin-top: -3px;
-}
+} */
 .cart-icon {
   padding-bottom: 3px;
   padding-left: 5px;
 }
-.center {
+/* .center {
   display: flex;
   flex-direction: row;
   align-items: center;
-}
+} */
 .addalign {
   padding-top: 4px;
 }
-.btnalign {
-  padding-left: 3px;
-}
+
 </style>
 

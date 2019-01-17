@@ -1,6 +1,5 @@
 <template>
-
-  <body>
+<body>
     <img src="~/static/hero.jpeg" />
     <div class="heading">
       <div

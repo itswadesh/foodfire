@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <div class="p-5">
+    <div class="padding">
       <div class="row align-items-center">
         <div class="col-lg-8">
           <h1
@@ -12,13 +12,15 @@
           >
             <div class="columns is-mobile ">
               <div class="breadcrumb-pagination">
-                <h2> {{o.name}}</h2>
+                <h2>Name : {{o.name}}</h2>
                 <h3>Address:{{o.address}}</h3>
-                <div
+                <h4>Total Amount:{{o.amount.total}}</h4>
+<div
                   class="circle"
+                  v-bind:class="{active1: o.status=='PENDING',Pending:o.status=='Pending'}"
                   native-value="Pending"
-                  @input="changeStatus(o)"
-                  @click="update('Pending'),showMessage('')"
+                  @input="changeStatus()"
+                  @click="update('Pending')"
                 >
                   <span>1</span>
                   <p
@@ -28,6 +30,7 @@
                 </div>
                 <div
                   class="circle "
+                  v-bind:class="{active2: o.status=='SHIPPED',Shipped:o.status=='Shipped'}"
                   native-value="Shipped"
                   type="is-warning"
                   @input="changeStatus(o)"
@@ -41,6 +44,7 @@
                 </div>
                 <div
                   class="circle"
+                  v-bind:class="{active3: o.status=='DELIVERED',Delivered:o.status=='Delivered'}"
                   native-value="Delivered"
                   type="is-success"
                   @input="changeStatus(o)"
@@ -48,12 +52,13 @@
                 >
                   <span class="margin">3</span>
                   <p
-                    class="greenclr"
+                    class="fntclr2"
                     v-bind:class="{Delivered:o.status=='Delivered'}"
                   >Delivered</p>
                 </div>
                 <div
                   class="circle"
+                  v-bind:class="{active4: o.status=='CANCELLED',Cancelled:o.status=='Cancelled'}"
                   native-value="Cancelled"
                   type="is-danger"
                   @input="changeStatus(o)"
@@ -61,7 +66,7 @@
                 >
                   <span class="margin">4</span>
                   <p
-                    class="redclr"
+                    class="fntclr3"
                     v-bind:class="{Cancelled:o.status=='Cancelled'}"
                   > Cancelled</p>
                 </div>
@@ -133,12 +138,9 @@ export default {
 .margin {
   margin-left: 19px;
 }
-h2 {
-  font-size: 16px;
-  text-align: -webkit-left;
-  color: cadetblue;
-}
-h3 {
+h2,
+h3,
+h4 {
   font-size: 16px;
   text-align: -webkit-left;
   color: cadetblue;
@@ -157,7 +159,7 @@ h3 {
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
-.p-5 {
+.padding {
   padding: 0rem !important;
 }
 .bg {
@@ -171,22 +173,6 @@ h3 {
   flex-wrap: wrap;
   margin-right: -15px;
   margin-left: -15px;
-}
-.align-items-center {
-  -webkit-box-align: center !important;
-  -ms-flex-align: center !important;
-  align-items: center !important;
-}
-.col-lg-8 {
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-}
-.box {
-  border: 1px solid #b5b5b5;
-  background-color: aliceblue;
 }
 .small {
   font-size: 12px;
@@ -214,23 +200,6 @@ h3 {
 .front {
   font-size: 15px;
 }
-button {
-  cursor: pointer;
-  height: 45px;
-  width: 91px;
-}
-body {
-  background-color: #f8f9fb;
-  padding: 27px 0 65px 0px;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
-    "Lucida Grande", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-size: 14px;
-}
-.clearfix {
-  clear: both;
-  min-height: 15px;
-}
 .breadcrumb-pagination {
   width: 100%;
   border-bottom: 1px solid #e1e6eb;
@@ -255,12 +224,12 @@ body {
   color: black;
   letter-spacing: 2px;
 }
-.greenclr {
+.fntclr2 {
   color: black;
   letter-spacing: 1px;
   padding-left: 3px;
 }
-.redclr {
+.fntclr3 {
   color: black;
   letter-spacing: 1px;
   padding-left: 7px;

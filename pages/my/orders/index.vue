@@ -2,20 +2,20 @@
   <div>
     <nav-bar />
     <div class="pstn">
-      <img src="truck.svg" />
-      <h4 class="text-white">
-        Order Status
+<img src="/truck.svg" />
+      <h4 class="textalgn">
+        Order History
       </h4>
       <br />
     </div>
 
     <!-- <orders :address="false" /> -->
     <div class="container">
-      <div class="p-5">
+      <div class="padding">
         <div class="row align-items-center">
-          <div class="col-lg-8">
-            <div
-              class="card border-0 shadow-lg bg"
+          <div class="alignment">
+            <h1
+              class="card border-0 shadow bg"
               v-for="o in orders"
               :key="o._id"
               :title="`${o.name} => ${o.address}`"
@@ -23,10 +23,9 @@
             >
               <div class="columns is-mobile ">
                 <div class="breadcrumb-pagination">
-                  <h2> {{o.name}}</h2>
-                  <div
+<div
                     class="circle"
-                    v-bind:class="{active1 : o.status=='PENDING',Pending:o.status=='Pending'}"
+                    v-bind:class="{active1: o.status=='PENDING',Pending:o.status=='Pending'}"
                     native-value="Pending"
                     @input="changeStatus(o)"
                   >
@@ -37,7 +36,7 @@
                     >Pending</p>
                   </div>
                   <div
-                    class="circle"
+                    class="circle "
                     v-bind:class="{active2: o.status=='SHIPPED',Shipped:o.status=='Shipped'}"
                     native-value="Shipped"
                     type="is-warning"
@@ -58,7 +57,7 @@
                   >
                     <span class="margin">3</span>
                     <p
-                      class="greenclr"
+                      class="fntclr2"
                       v-bind:class="{Delivered:o.status=='Delivered'}"
                     >Delivered</p>
                   </div>
@@ -71,30 +70,51 @@
                   >
                     <span class="margin">4</span>
                     <p
-                      class="redclr"
+                      class="fntclr3"
                       v-bind:class="{Cancelled:o.status=='Cancelled'}"
                     > Cancelled</p>
                   </div>
+
                 </div>
               </div>
-              <div>
-                <div
-                  v-for="(i,ix) in o.items"
-                  :key="ix"
-                >
-                  <div class="media-content">
-                    <div class="content">
-                      <strong class="front">{{ix+1}} - {{i.name}}</strong>
-                      <small class="front">{{i.price | currency}} (<strong>{{i.qty}}</strong>)</small>
+              <div class="columns is-mobile">
+                <div>
+                  <div
+                    class="rows is-mobile"
+                    v-for="(i,ix) in o.items"
+                    :key="ix"
+                  >
+                    <div class="media-content">
+                      <div class="content">
+                        <strong class="front">{{ix+1}} - {{i.name}}</strong>
+                        <small class="front">{{i.price | currency}} (<strong>{{i.qty}}</strong>)</small>
+                      </div>
                     </div>
                   </div>
                 </div>
+                 <div>
               </div>
-            </div>
+              </div>
+              <div class="amnt_mrgn">
+                <h4>Total Amount: {{o.amount.total}}</h4>
+                </div>
+<div class="shipping_mrgn">
+                <p>Shipping Details: </p>
+              </div>
+              <div class="p_bottom">
+                <h2> {{o.name}}</h2>
+                <h3>{{o.address}}</h3>
+                </div>
+              
+              <div>
+                <button class="cancelbtn">Cancel My Order</button>
+              </div>
+            </h1>
           </div>
         </div>
       </div>
     </div>
+
   </div>
 </template>
 <script >
@@ -141,18 +161,41 @@ export default {
 </script> 
 
 <style scoped>
+p
+{
+  font-family: Roboto-Medium,Droid Sans,HelveticaNeue-Medium,Helvetica Neue Medium,Arial,Lucida Grande,sans-serif;
+  color: #878787;
+  font-size: 12px;
+  line-height: 12px;
+}
+
 .margin {
   margin-left: 19px;
 }
 h2 {
-  font-size: 16px;
+ 
   text-align: -webkit-left;
-  color: cadetblue;
+  font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: 700;
 }
 h3 {
-  font-size: 16px;
   text-align: -webkit-left;
-  color: cadetblue;
+  color: #3baf18;
+      margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 10px;
+    font-weight: normal;
+    vertical-align: baseline;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box
+}
+h4 {
+  font-size: 16px;
+  
+  color: black;
+  padding-left: 20px;
 }
 .container {
   width: 100%;
@@ -164,11 +207,11 @@ h3 {
 .border-0 {
   border: 0 !important;
 }
-.shadow-lg {
+.shadow {
   -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
   box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
 }
-.p-5 {
+.padding {
   padding: 0rem !important;
 }
 .bg {
@@ -183,21 +226,12 @@ h3 {
   margin-right: -15px;
   margin-left: -15px;
 }
-.align-items-center {
-  -webkit-box-align: center !important;
-  -ms-flex-align: center !important;
-  align-items: center !important;
-}
-.col-lg-8 {
+.alignment {
   position: relative;
   width: 100%;
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-}
-.box {
-  border: 1px solid #b5b5b5;
-  background-color: aliceblue;
 }
 .small {
   font-size: 12px;
@@ -225,22 +259,31 @@ h3 {
 .front {
   font-size: 15px;
 }
-button {
-  cursor: pointer;
-  height: 45px;
-  width: 91px;
+.shipping_mrgn {
+  border-top: 1px solid #dee2ed;
+  border-bottom: 1px solid #dee2ed;
+  padding-top: 0px;
 }
-body {
-  background-color: #f8f9fb;
-  padding: 27px 0 65px 0px;
-  font-family: "HelveticaNeue", "Helvetica Neue", Helvetica, Arial,
-    "Lucida Grande", sans-serif;
-  -webkit-font-smoothing: antialiased;
-  font-size: 14px;
+.amnt_mrgn {
+  border-top: 1px solid #dee2ed;
+  padding-top: 0px;
 }
-.clearfix {
-  clear: both;
-  min-height: 15px;
+.p_bottom
+{
+  padding-bottom: 10px;
+  padding-left: 20px;
+}
+.cancelbtn {
+  font-family: Karla, Roboto, sans-serif;
+  width: 100%;
+  display: block;
+  padding: 0px;
+  font-size: 1.25rem;
+  line-height: 1.5;
+  border-radius: 0.3rem;
+  background: linear-gradient(87deg, #fa4040 0, #fbbe40 100%) !important;
+  border-color: #fff;
+  color: #fff;
 }
 .breadcrumb-pagination {
   width: 100%;
@@ -314,25 +357,25 @@ body {
   margin: 30px auto 25px;
   font-size: 11px;
 }
-.active1 p {
+.active1 {
   border-bottom: 2px solid blue;
   padding-bottom: 27px;
   margin-bottom: 0px !important;
   font-weight: 700;
 }
-.active2 p {
+.active2 {
   border-bottom: 2px solid skyblue;
   padding-bottom: 27px;
   margin-bottom: 0px !important;
   font-weight: 700;
 }
-.active3 p {
+.active3 {
   border-bottom: 2px solid green;
   padding-bottom: 27px;
   margin-bottom: 0px !important;
   font-weight: 700;
 }
-.active4 p {
+.active4 {
   border-bottom: 2px solid red;
   padding-bottom: 27px;
   margin-bottom: 0px !important;
@@ -350,75 +393,10 @@ h1 {
   text-align: center;
   padding-top: 16px;
 }
-.text-white {
+.textalgn {
   color: #212529 !important;
   padding-top: 0px;
   font-size: 14px;
-}
-.btn {
-  position: relative;
-  text-transform: uppercase;
-  -webkit-transition: all 0.15s ease;
-  transition: all 0.15s ease;
-  will-change: transform;
-  letter-spacing: 0.025em;
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-align: center;
-  white-space: nowrap;
-  vertical-align: middle;
-}
-.btn-block {
-  display: block;
-  width: 100%;
-}
-.btn-white {
-  color: #212529;
-  background-color: #fff;
-  border-color: #fff;
-  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-    0 1px 3px rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
-}
-.btn-lg {
-  padding: 0.875rem 1rem;
-  font-size: 1.25rem;
-  line-height: 1.5;
-  border-radius: 0.3rem;
-}
-.col-lg-3 {
-  position: relative;
-  width: 100%;
-
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-bottom: 10px;
-}
-
-.btncontent {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-.svg {
-  margin-left: -5px;
-
-  padding-bottom: 10px;
-}
-.svg2 {
-  fill: white;
-}
-.btnclr {
-  color: white;
-  text-decoration: none;
-  font-size: 15px;
-}
-.btn-white1 {
-  color: #212529;
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
-  border-color: #fff;
-  -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-    0 1px 3px rgba(0, 0, 0, 0.08);
-  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+  text-align: -webkit-center;
 }
 </style>

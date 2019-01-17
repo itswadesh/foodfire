@@ -2,7 +2,7 @@
   <div>
     <nav-bar />
     <center class="title">
-      <strong>View Details</strong>
+      <strong>Order Details</strong>
     </center>
     <products
       :products="cartItems"

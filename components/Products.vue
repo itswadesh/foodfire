@@ -62,9 +62,6 @@ export default {
   text-align: left;
   padding-top: 1rem;
 }
-.pt3 {
-  padding-top: 3px;
-}
 .content {
   flex: 1;
   margin-top: 5px;
@@ -79,15 +76,6 @@ strong {
 .image img {
   border-radius: 50px;
 }
-figure {
-  margin: 0;
-  padding: 0;
-}
-media-right {
-  flex-basis: auto;
-  flex-grow: 0;
-  flex-shrink: 0;
-}
 .border {
   border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
 }
@@ -98,12 +86,6 @@ media-right {
 .big {
   font-size: 1.5em;
   font-weight: 700;
-}
-h1 {
-  font-size: 100%;
-  font-weight: 400;
-  text-transform: uppercase;
-  letter-spacing: -1px;
 }
 </style>
 

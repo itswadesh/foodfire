@@ -1,26 +1,14 @@
 <template>
   <div>
     <nav-bar />
-    <div class="container">
+    <div>
       <center class="title">
         <strong>My Cart</strong>
       </center>
       <center v-if="cartItems.length==0">
         <div class="container">
-          <div class="card shadow-lg">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="grey"
-              width="50"
-              height="50"
-              viewBox="0 0 24 24"
-            >
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              />
-              <path d="M17.21 9l-4.38-6.56c-.19-.28-.51-.42-.83-.42-.32 0-.64.14-.83.43L6.79 9H2c-.55 0-1 .45-1 1 0 .09.01.18.04.27l2.54 9.27c.23.84 1 1.46 1.92 1.46h13c.92 0 1.69-.62 1.93-1.46l2.54-9.27L23 10c0-.55-.45-1-1-1h-4.79zM9 9l3-4.4L15 9H9zm3 8c-1.1 0-2-.9-2-2s.9-2 2-2 2 .9 2 2-.9 2-2 2z" />
-            </svg>
+          <div class="card shadow-lg2">
+            <img src="/bag-black.svg" />
             <h2 class="grey">
               Please go back to Restaurant menu and add some food to continue...</h2>
           </div>
@@ -28,27 +16,19 @@
             to="/"
             class="button"
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              fill="#fff"
-              viewBox="0 0 24 24"
-            >
-              <path d="M10 9V5l-7 7 7 7v-4.1c5 0 8.5 1.6 11 5.1-1-5-4-10-11-11z" />
-              <path
-                d="M0 0h24v24H0z"
-                fill="none"
-              /></svg>
+            <img src="/backarrow.svg" />
+
             Back to Menu
           </nuxt-link>
         </div>
       </center>
+
       <products
         v-else
         :products="cartItems"
         :showcart="true"
       />
+
     </div>
     <div class="footer">
       <a v-if="!cartItems.length==0">
@@ -157,6 +137,9 @@ export default {
 };
 </script>
 <style scoped>
+.svgclr {
+  fill: currentColor;
+}
 .container {
   position: relative;
   overflow: scroll;
@@ -169,13 +152,28 @@ export default {
   width: 100%;
   text-align: center;
 }
-
+.card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.05);
+  border-radius: 0.25rem;
+  position: relative;
+}
 .align {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
 }
-
 .button {
   font-family: Karla, Roboto, sans-serif;
   text-transform: uppercase;
@@ -187,7 +185,7 @@ export default {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   width: 100%;
   display: block;
-  padding: 0.875rem 1rem;
+  padding: 1px 0rem;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;

@@ -60,7 +60,7 @@ export default {
   align-items: center;
   padding-top: 20px;
 }
-.switch input[type="checkbox"] + .check {
+/* .switch input[type="checkbox"] + .check {
   display: flex;
   align-items: center;
   flex-shrink: 0;
@@ -70,7 +70,7 @@ export default {
   background: #b5b5b5;
   border-radius: 1em;
   transition: background 0.15s ease-out;
-}
+} */
 .control-label {
   padding-left: 0.5em;
 }
@@ -119,57 +119,9 @@ input {
 .switch input[type="checkbox"]:checked + .check:before {
   transform: translate3d(100%, 0, 0);
 }
-.container {
-  width: 100%;
-  padding-top: 0px;
-  padding-right: 0px;
-  padding-left: 0px;
-  margin-right: auto;
-  margin-left: auto;
-}
-.blur {
-  filter: blur(8px);
-  -webkit-filter: blur(8px);
-}
-.border-0 {
-  border: 0 !important;
-}
-.shadow-lg {
-  -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-}
-.p-5 {
-  padding: 3rem !important;
-}
-.align-items-center {
-  -webkit-box-align: center !important;
-  -ms-flex-align: center !important;
-  align-items: center !important;
-}
-.row {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-wrap: wrap;
-  flex-wrap: wrap;
-  margin-right: -15px;
-  margin-left: -15px;
-}
-.col-lg-3 {
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-top: 15px;
-}
 .pstn {
   padding-bottom: 20px;
   text-align: center;
-}
-.shadow-lg {
-  -webkit-box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-  box-shadow: 0 1rem 3rem rgba(1, 1, 1, 1) !important;
 }
 </style>
 
