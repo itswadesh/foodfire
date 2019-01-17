@@ -1,62 +1,150 @@
 <template>
-<div>
-<div>
-   <nav-bar />
-      </div>
+  <div>
+    <div>
+      <nav-bar />
+    </div>
     <div class="container">
       <div class="card border-0 shadow-lg bg-gradient-warning">
         <div>
           <div class="row align-items-center">
             <div class="align">
               <div>
-               <img  src="/right.svg" />
-                <h1 class="text-white">
-                  Order Placed
-                </h1>
+                <img src="/right.svg" />
+                <h3 class="text-primary-light font-weight-bold">THANK YOU FOR YOUR ORDER</h3>
+                <br>
+                <p>
+                  Your order has been received. Thank you. You will receive a confirmation call regarding availability before dispatch.  Order processing takes 3-4 working days. Please note items purchased at discount cannot be exchanged. For customer service, please contact care@foodfire.in
+                </p>
+                <p class="">Transaction ID: <span class="font-weight-bold">{{order['.key']}}</span></p>
+
+                <div
+                  class="address mb-3 "
+                  v-if="order.address"
+                >
+                  <small>{{order.name}}</small><br />
+                  <small>{{order.address}}</small><br />
                 </div>
-                <p class="lead text-white margin">
-                  <b>Amount to be paid: </b></p><br />
-                <h1>{{$route.query.amount | currency}}</h1>
-            
-            <div class="btn_align ">
-              <a type class="btn btn-block btn-white btn-lg btncontent"><router-link to="/my/orders">View Details</router-link>
-                <img src ="/rightarrow.svg"/>
-              </a>
+
+                <button
+                  type="button"
+                  class="btn-lg btn-primary font-weight-500  mb-5"
+                  @click="$router.push('/my/orders')"
+                >
+                  My Orders Page
+                  <i class="fi flaticon-right-chevron fs-2x "></i>
+                </button>
+
               </div>
+              <p class="lead text-white margin">
+                <b>Amount to be paid: </b>
+              </p><br />
+              <h1 v-if="order.amount">{{order.amount.total | currency}}</h1>
+
+              <div class="btn_align ">
+                <a
+                  type
+                  class="btn btn-block btn-white btn-lg btncontent"
+                >
+                  <router-link :to="'/my/orders/'+orderNo">View Details</router-link>
+                  <img src="/rightarrow.svg" />
+                </a>
+              </div>
+
+              <div class="success-summary-container">
+                <div class="card success-summary-card">
+                  <div class="card-header">
+                    <h4 class="card-title checkout-success-summary-title"> ORDER SUMMARY</h4>
+                  </div>
+                  <div class="card-body">
+
+                    <div class="summary-products">
+                      <nuxt-link
+                        class="summary-product"
+                        v-for="(p, index) in order.items"
+                        :key="index"
+                        :to="'/'+p.slug+'?id='+p.pid"
+                      >
+                        <div class="summary-product-img-container">
+                          <img
+                            v-lazy="p.img"
+                            alt=""
+                            class=" img-fluid summary-product-img"
+                          >
+                        </div>
+                        <div class="summary-product-detail">
+                          <p class="summary-product-title mb-3 text-gray-darker fs-2x">{{ p.name }}</p>
+                          <span class="font-weight-500">{{ p.price | currency }}</span>
+                        </div>
+                      </nuxt-link>
+                    </div>
+
+                    <div
+                      class="summary-total text-center mb-3"
+                      v-if="order && order.amount"
+                    >
+                      <h4 class="font-weight-600">
+                        <span class="text">Total Amount: </span>
+                        <span class="total">{{order.amount.total | currency}}</span>
+                      </h4>
+                    </div>
+
+                  </div>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </div>
-        </div>
-           </div>
-           
-     <div class="btn_align1 ">
-      <a type class="btn btn-block btn-white1 btn-lg btncontent">
-        <img src="/backarrow.svg"/>
-        <router-link to="/" class="btnclr">Restaurant Menu</router-link>
+    </div>
+
+    <div class="btn_align1 ">
+      <a
+        type
+        class="btn btn-block btn-white1 btn-lg btncontent"
+      >
+        <img src="/backarrow.svg" />
+        <router-link
+          to="/"
+          class="btnclr"
+        >Restaurant Menu</router-link>
       </a></div>
     <!-- <router-link to="/my/orders" class="button is-dark">Find My Previous Orders</router-link> -->
   </div>
-  </template>
+</template>
 <script>
 import { clearCart } from "@/config";
 const NavBar = () => import("~/components/NavBar");
-
+import { db } from "~/service/firebase";
 export default {
-  async created() {
-    try {
-      if (clearCart) this.$store.commit("cart/clearCart", {});
-    } catch (e) {}
-  },
   components: { NavBar },
+  computed: {
+    user() {
+      return (this.$store.state.auth || {}).user || null;
+    }
+  },
+  firestore() {
+    return {
+      order: db.collection(`orders`).doc(this.$route.query.id)
+    };
+  },
+  async asyncData({ redirect, store, route }) {
+    store.commit("cart/clearCart", {});
+    return { orderNo: route.query.id };
+  },
+  methods: {
+    cancelOrder() {
+      console.log("Cancel order  requested");
+    }
+  },
   head() {
     return {
-      title: "Payment",
+      title: "Order Success",
       meta: [
         {
           hid: "description",
           name: "description",
-          content:
-            "This page receives payment status after payments made from payment gateway"
+          content: "Order placed successfully"
         }
       ]
     };
@@ -169,7 +257,6 @@ export default {
   min-height: 1px;
   padding-right: 15px;
   padding-left: 15px;
-  
 }
 .btn_align1 {
   position: relative;
@@ -183,7 +270,7 @@ export default {
   position: relative;
   width: 100%;
   min-height: 1px;
- padding: 10px;
+  padding: 10px;
   text-align: center;
 }
 .btncontent {

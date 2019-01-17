@@ -6,10 +6,21 @@
         <div>
           <section v-if="settings">
             <center>
-              <label tabindex="0" class="switch">
-                <input type="checkbox" true-value="true" value="false" v-model="settings.closed">
+              <label
+                tabindex="0"
+                class="switch"
+              >
+                <input
+                  type="checkbox"
+                  true-value="true"
+                  value="false"
+                  v-model="settings.closed"
+                >
                 <span class="check is-danger"></span>
-                <div type="is-danger" @input="changeStatus(settings.closed)">
+                <div
+                  type="is-danger"
+                  @input="changeStatus(settings.closed)"
+                >
                   <span class="control-label">
                     <i v-if="settings.closed">Restaurant Closed</i>
                     <i v-else>Restaurant Open</i>
@@ -37,7 +48,8 @@ export default {
   },
   firestore() {
     return {
-      settings: db.collection("settings").doc("shop")
+      settings: db.collection("settings").doc("shop"),
+      orders: db.collection("orders")
     };
   },
   methods: {

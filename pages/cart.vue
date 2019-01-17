@@ -111,27 +111,27 @@ export default {
           this.loading = false;
         }
       } else {
-        this.askAddress();
+        let address = "Y1, Sector-18";
+        this.checkout({ address });
       }
     },
     askAddress() {
-      this.loading = true;
-      let user = this.user;
-      this.$dialog.prompt({
-        confirmText: "Confirm Order",
-        message: `Address:`,
-        inputAttrs: {
-          value: user.address,
-          placeholder: "Y-1, Sector-18"
-        },
-        onConfirm: address => {
-          this.checkout({ address });
-          this.loading = false;
-        },
-        onCancel: res => {
-          this.loading = false;
-        }
-      });
+      //   this.loading = true;
+      //   let user = this.user;
+      //   this.$dialog.prompt({
+      //     confirmText: "Confirm Order",
+      //     message: `Address:`,
+      //     inputAttrs: {
+      //       value: user.address,
+      //       placeholder: "Y-1, Sector-18"
+      //     },
+      //     onConfirm: address => {
+      //       this.loading = false;
+      //     },
+      //     onCancel: res => {
+      //       this.loading = false;
+      //     }
+      //   });
     }
   }
 };

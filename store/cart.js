@@ -101,7 +101,6 @@ const actions = {
             let i = cartItems[ix]
             items.push({ name: i.name || '', description: i.description || '', img: i.img || '', price: i.price || 0, qty: i.qty || 1 })
         }
-        S
         let orderDetails = { createdAt: new Date(), name: name || '', address: address || '', email, items: items || [], status: 'Pending', amount: { total: getters.getTotal, details: { qty: getters.getTotalCount, discount: getters.getDiscount, shipping: getters.getShippingAmount, subtotal: getters.getSubtotal } } }
         try {
             db.collection("orders").add(orderDetails);
