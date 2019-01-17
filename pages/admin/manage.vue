@@ -2,7 +2,7 @@
   <div>
     <nav-bar />
     <div class="pstn">
-<img src="/truck.svg" />
+      <img src="/truck.svg" />
       <h4 class="textalgn">
         Order History
       </h4>
@@ -23,7 +23,7 @@
             >
               <div class="columns is-mobile ">
                 <div class="breadcrumb-pagination">
-<div
+                  <div
                     class="circle"
                     v-bind:class="{active1: o.status=='PENDING',Pending:o.status=='Pending'}"
                     native-value="Pending"
@@ -92,20 +92,20 @@
                     </div>
                   </div>
                 </div>
-                 <div>
-              </div>
+                <div>
+                </div>
               </div>
               <div class="amnt_mrgn">
                 <h4>Total Amount: {{o.amount.total}}</h4>
-                </div>
-<div class="shipping_mrgn">
+              </div>
+              <div class="shipping_mrgn">
                 <p>Shipping Details: </p>
               </div>
               <div class="p_bottom">
                 <h2> {{o.name}}</h2>
                 <h3>{{o.address}}</h3>
-                </div>
-              
+              </div>
+
               <div>
                 <button class="cancelbtn">Cancel My Order</button>
               </div>
@@ -159,11 +159,10 @@ export default {
   }
 };
 </script> 
-
 <style scoped>
-p
-{
-  font-family: Roboto-Medium,Droid Sans,HelveticaNeue-Medium,Helvetica Neue Medium,Arial,Lucida Grande,sans-serif;
+h6 {
+  font-family: Roboto-Medium, Droid Sans, HelveticaNeue-Medium,
+    Helvetica Neue Medium, Arial, Lucida Grande, sans-serif;
   color: #878787;
   font-size: 12px;
   line-height: 12px;
@@ -173,27 +172,26 @@ p
   margin-left: 19px;
 }
 h2 {
- 
   text-align: -webkit-left;
   font-size: 16px;
-    margin-bottom: 10px;
-    font-weight: 700;
+  margin-bottom: 10px;
+  font-weight: 700;
 }
 h3 {
   text-align: -webkit-left;
   color: #3baf18;
-      margin: 0;
-    padding: 0;
-    border: 0;
-    font-size: 10px;
-    font-weight: normal;
-    vertical-align: baseline;
-    -webkit-box-sizing: border-box;
-    box-sizing: border-box
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 12px;
+  font-weight: normal;
+  vertical-align: baseline;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
 }
 h4 {
   font-size: 16px;
-  
+
   color: black;
   padding-left: 20px;
 }
@@ -263,14 +261,14 @@ h4 {
   border-top: 1px solid #dee2ed;
   border-bottom: 1px solid #dee2ed;
   padding-top: 0px;
+  padding-left: 20px;
 }
 .amnt_mrgn {
   border-top: 1px solid #dee2ed;
   padding-top: 0px;
 }
-.p_bottom
-{
-  padding-bottom: 10px;
+.p_bottom {
+  padding-bottom: 12px;
   padding-left: 20px;
 }
 .cancelbtn {
@@ -400,3 +398,4 @@ h1 {
   text-align: -webkit-center;
 }
 </style>
+

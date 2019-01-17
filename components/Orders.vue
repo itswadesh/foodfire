@@ -2,7 +2,7 @@
   <div class="container">
     <div class="padding">
       <div class="row align-items-center">
-        <div class="col-lg-8">
+        <div>
           <h1
             class="card border-0 shadow-lg bg"
             v-for="o in orders"
@@ -15,7 +15,7 @@
                 <h2>Name : {{o.name}}</h2>
                 <h3>Address:{{o.address}}</h3>
                 <h4>Total Amount:{{o.amount.total}}</h4>
-<div
+                <div
                   class="circle"
                   v-bind:class="{active1: o.status=='PENDING',Pending:o.status=='Pending'}"
                   native-value="Pending"

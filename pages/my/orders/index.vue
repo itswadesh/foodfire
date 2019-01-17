@@ -22,7 +22,10 @@ export default {
   components: { NavBar },
   firestore() {
     return {
-      orders: db.collection("orders").where("email", "==", "2lessons@gmail.com")
+      orders: db
+        .collection("orders")
+        .where("email", "==", "2lessons@gmail.com")
+        .orderBy("createdAt", "desc")
     };
   },
   computed: {
