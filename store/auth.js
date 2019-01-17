@@ -34,8 +34,8 @@ export const actions = {
             .then(function (result) {
                 var token = result.credential.accessToken;
                 var user = result.user;
-                commit('setUser', { name: user.displayName, email: user.email })
-                vm.$cookies.set('user', { name: user.displayName, email: user.email }, { path: '/' })
+                commit('setUser', { name: user.displayName, email: user.email, avatar: user.photoURL })
+                vm.$cookies.set('user', { name: user.displayName, email: user.email, avatar: user.photoURL }, { path: '/' })
                 vm.$cookies.set('Authorization', token, { path: '/', maxAge: tokenExpiry })
             }).catch(function (error) {
                 var errorCode = error.code;
