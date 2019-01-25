@@ -3,102 +3,76 @@
     <div>
       <nav-bar />
     </div>
-    <div class="container">
-      <div class="card border-0 shadow-lg bg-gradient-warning">
-        <div>
+    <div class="container head">
+      <div>
+        <div v-if="order">
           <div class="row align-items-center">
             <div class="align">
               <div>
-                <img src="/right.svg" />
-                <h3 class="text-primary-light font-weight-bold">THANK YOU FOR YOUR ORDER</h3>
+                <div class="card svgcard">
+                  <img
+                    class="svgheight"
+                    src="/circleright.svg"
+                  />
+                  <h3 class="text-primary-light font-weight-bold">Thank You!!!</h3>
+                </div>
                 <br>
-                <p>
-                  Your order has been received. Thank you. You will receive a confirmation call regarding availability before dispatch.  Order processing takes 3-4 working days. Please note items purchased at discount cannot be exchanged. For customer service, please contact care@foodfire.in
-                </p>
-                <p class="">Transaction ID: <span class="font-weight-bold">{{order['.key']}}</span></p>
-
+                <div>
+                  <h2>
+                    Your order request has been received <small>successfully.</small>
+                  </h2>
+                  <p class="font">Transaction ID: <span class="font-weight-bold">{{order[".key"]}}</span></p>
+                  <h4>You will receive a message or call regarding the confirmation of the product.</h4>
+                  <h5><strong>Note: </strong>Your order will be sent to you, usually within 1hr.</h5>
+                </div>
                 <div
                   class="address mb-3 "
                   v-if="order.address"
                 >
-                  <small>{{order.name}}</small><br />
-                  <small>{{order.address}}</small><br />
-                </div>
-
-                <button
-                  type="button"
-                  class="btn-lg btn-primary font-weight-500  mb-5"
-                  @click="$router.push('/my/orders')"
-                >
-                  My Orders Page
-                  <i class="fi flaticon-right-chevron fs-2x "></i>
-                </button>
-
-              </div>
-              <p class="lead text-white margin">
-                <b>Amount to be paid: </b>
-              </p><br />
-              <h1 v-if="order.amount">{{order.amount.total | currency}}</h1>
-
-              <div class="btn_align ">
-                <a
-                  type
-                  class="btn btn-block btn-white btn-lg btncontent"
-                >
-                  <router-link :to="'/my/orders/'+orderNo">View Details</router-link>
-                  <img src="/rightarrow.svg" />
-                </a>
-              </div>
-
-              <div class="success-summary-container">
-                <div class="card success-summary-card">
-                  <div class="card-header">
-                    <h4 class="card-title checkout-success-summary-title"> ORDER SUMMARY</h4>
-                  </div>
-                  <div class="card-body">
-
-                    <div class="summary-products">
-                      <nuxt-link
-                        class="summary-product"
-                        v-for="(p, index) in order.items"
-                        :key="index"
-                        :to="'/'+p.slug+'?id='+p.pid"
-                      >
-                        <div class="summary-product-img-container">
-                          <img
-                            v-lazy="p.img"
-                            alt=""
-                            class=" img-fluid summary-product-img"
-                          >
-                        </div>
-                        <div class="summary-product-detail">
-                          <p class="summary-product-title mb-3 text-gray-darker fs-2x">{{ p.name }}</p>
-                          <span class="font-weight-500">{{ p.price | currency }}</span>
-                        </div>
-                      </nuxt-link>
-                    </div>
-
-                    <div
-                      class="summary-total text-center mb-3"
-                      v-if="order && order.amount"
-                    >
-                      <h4 class="font-weight-600">
-                        <span class="text">Total Amount: </span>
-                        <span class="total">{{order.amount.total | currency}}</span>
-                      </h4>
-                    </div>
-
-                  </div>
+                  <span class="name">{{order.name}}</span><br />
+                  <span class="name">{{order.address}}</span><br />
                 </div>
               </div>
-
+              <div>
+                <div class="products ">
+                  <div class="margin">
+                    <span class="order_header"> ORDER SUMMARY</span>
+                  </div>
+                  <nuxt-link
+                    class="product"
+                    v-for="(p, index) in order.items"
+                    :key="index"
+                    :to="'/'+p.slug+'?id='+p.pid"
+                  >
+                    <div class="flex product_card columns">
+                      <div class="image">
+                        <img
+                          v-lazy="p.img"
+                          alt=""
+                        />
+                      </div>
+                      <div>
+                        <span>{{ p.name }}</span>
+                      </div>
+                      <div class="price-align">
+                        <div class="big">{{p.price | currency}}</div>
+                      </div>
+                    </div>
+                  </nuxt-link>
+                </div>
+                <h6>
+                  <u>For customer service</u><br> Please contact:<router-link
+                    class="cursor"
+                    to=""
+                  > care@foodfire.in</router-link>
+                </h6>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <div class="btn_align1 ">
+    <div class="btn_align1 footer">
       <a
         type
         class="btn btn-block btn-white1 btn-lg btncontent"
@@ -124,9 +98,11 @@ export default {
     }
   },
   firestore() {
-    return {
-      order: db.collection(`orders`).doc(this.$route.query.id)
-    };
+    if (this.$route.query.id)
+      return {
+        order: db.collection(`orders`).doc(this.$route.query.id)
+      };
+    else return { order: {} };
   },
   async asyncData({ redirect, store, route }) {
     store.commit("cart/clearCart", {});
@@ -166,14 +142,11 @@ export default {
 }
 .container {
   width: 100%;
-  padding-top: 21px;
+  padding-top: 0px;
   padding-right: 15px;
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
-}
-.bg-gradient-warning {
-  background: linear-gradient(87deg, #699b66 0, #68ea6c 100%) !important;
 }
 .border-0 {
   border: 0 !important;
@@ -193,11 +166,29 @@ export default {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
-  background-color: #fff;
+  background: linear-gradient(50deg, #67d44d 0, #0a8e12 100%) !important;
   background-clip: border-box;
   border: 0.0625rem solid rgba(0, 0, 0, 0.05);
   border-radius: 0.25rem;
   position: relative;
+}
+.product_card {
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  min-width: 0;
+  word-wrap: break-word;
+  background-color: #fff;
+  background-clip: border-box;
+  border: 2px solid rgba(0, 0, 0, 0.05);
+  border-radius: 0.25rem;
+  position: relative;
+  width: 100%;
 }
 .row {
   display: -webkit-box;
@@ -246,7 +237,7 @@ export default {
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 .btn-lg {
-  padding: 4px;
+  padding: 7px;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
@@ -259,12 +250,9 @@ export default {
   padding-left: 15px;
 }
 .btn_align1 {
-  position: relative;
-  width: 100%;
-  min-height: 1px;
-  padding-right: 15px;
-  padding-left: 15px;
-  padding-top: 15px;
+  min-height: 0;
+  padding-top: 9px;
+  padding-bottom: 0px;
 }
 .align {
   position: relative;
@@ -290,5 +278,123 @@ h1 {
   line-height: 1px;
   color: #32325d;
   font-size: 20px;
+}
+h2 {
+  font-size: 13px;
+  margin-top: -10px;
+}
+small {
+  color: #09a709;
+  font-size: 13px;
+}
+.svgheight {
+  height: 29px;
+  margin-top: 13px;
+}
+.svgcard {
+  width: 100%;
+  padding-top: 0px;
+  padding-right: 11px;
+  padding-left: 9px;
+  margin-right: auto;
+  margin-left: auto;
+  height: 79px;
+  border-radius: 0%;
+}
+h3 {
+  letter-spacing: 1px;
+  text-transform: initial;
+  margin-top: 8px;
+  font-size: 1.125rem;
+  font-family: sans-serif;
+  color: white;
+}
+h4 {
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 1px;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: slategray;
+}
+h5 {
+  margin-top: -4px;
+  font-size: 13px;
+}
+br {
+  line-height: 19px;
+}
+.font {
+  font-weight: bold;
+  font-size: 13px;
+}
+.name {
+  font-size: 18px;
+  color: #3a3ac9;
+}
+.cursor {
+  cursor: pointer;
+}
+.color {
+  color: aliceblue;
+}
+.products {
+  margin: 0 1rem;
+}
+.product {
+  align-items: flex-start;
+  display: flex;
+  text-align: left;
+  padding-top: 1rem;
+}
+strong {
+  color: red;
+  font-weight: 700;
+}
+.image {
+  width: 104px;
+}
+.image img {
+  border-radius: 50px;
+}
+.border {
+  border-top: 1px solid hsla(0, 0%, 85.9%, 0.5);
+}
+.price-align {
+  padding-right: 10px;
+}
+.big {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+.columns {
+  margin-top: -0.75rem;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+.flex {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  border-radius: 10px;
+}
+.order_header {
+  font-weight: 700;
+  font-family: sans-serif;
+}
+.footer {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+}
+.head {
+  position: relative;
+  left: 0;
+  width: 100%;
+  text-align: center;
+  margin-bottom: 18px;
 }
 </style>

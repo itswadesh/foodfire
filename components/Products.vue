@@ -1,5 +1,5 @@
 <template>
-  <div class="products">
+  <div class="products head">
     <div
       class="product"
       :class="{'border':ix!=0}"
@@ -86,6 +86,13 @@ strong {
 .big {
   font-size: 1.5em;
   font-weight: 700;
+}
+.head {
+  position: relative;
+  left: 0;
+  right: 0;
+  text-align: center;
+  margin-bottom: 50px;
 }
 </style>
 
