@@ -22,7 +22,9 @@ import { db } from "~/service/firebase";
 export default {
   data() {
     return {
-      closed: true
+      closed: true,
+      settings: [],
+      products: []
     };
   },
   firestore() {

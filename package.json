@@ -11,8 +11,6 @@
     "start": "cross-env NODE_ENV=production nuxt start"
   },
   "dependencies": {
-    "@firebase/app": "^0.3.6",
-    "@firebase/firestore": "^0.9.3",
     "@nuxtjs/component-cache": "^1.1.4",
     "@nuxtjs/dotenv": "^1.3.0",
     "@nuxtjs/google-analytics": "^2.0.2",
@@ -20,10 +18,10 @@
     "cookie": "^0.3.1",
     "cookie-universal-nuxt": "^2.0.14",
     "cross-env": "^5.2.0",
-    "firebase": "^5.7.3",
+    "firebase": "^5.8.1",
     "helmet": "^3.15.0",
     "js-cookie": "^2.2.0",
-    "nuxt": "^2.3.4",
+    "nuxt": "^2.4.2",
     "nuxt-client-init-module": "^0.1.4",
     "nuxt-robots-module": "^1.3.0",
     "socket.io-client": "^2.2.0",
