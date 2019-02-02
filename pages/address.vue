@@ -1,19 +1,23 @@
 <template>
   <div>
     <nav-bar />
-    <div class="img">
+    <div class="img1">
       <img src="/personlogo.png">
     </div>
     <div class="card shadow-lg2 columns">
-      <p class="margin">
+      <div class="margin">
         <label for="login"></label>
+        <h5 v-if="user"><u>{{user.name}}</u></h5>
         <input
           type="text"
           name="Email"
           placeholder="Email Address*"
-          required
+          value=required
+          v-if="user"
+          v-model="user.email"
+          disabled
         >
-      </p>
+      </div>
       <p class="margin_phn">
         <label for="Phone no"></label>
         <input
@@ -24,7 +28,7 @@
           required
         >
       </p>
-      <h1>:Enter Address: </h1>
+      <h1>Enter Address: </h1>
       <div class="margin">
         <textarea placeholder="Enter Address Here*"></textarea></div>
     </div>
@@ -37,18 +41,20 @@
                 <div class="is-mobile">
                   <div class="align">
                     <div class="amount_align">
-                      <p class="grey">Total Amount</p>
+                      <p class="gray">Total Amount</p>
                     </div>
-                    <div class="padding">
-                      <h3>{{getTotal | currency}}</h3>
+                    <div>
+                      <h2>{{getTotal | currency}}</h2>
                     </div>
                   </div>
                   <div>
                     <button
                       class="button"
+                      :class="disable"
                       :disabled="getTotal==0 || loading"
-                      @click="placeOrder()"
-                    >Place Order</button>
+                      @click="setnewvalue()"
+                    ><span :class="fadeIn">{{text}}</span>
+                    </button>
                   </div>
                 </div>
                 <div class="is-mobile">
@@ -67,15 +73,17 @@
 import { mapState, mapGetters, mapActions } from "vuex";
 const Products = () => import("~/components/Products");
 const NavBar = () => import("~/components/NavBar");
-import { db } from "~/service/firebase";
 export default {
   props: ["products"],
-  firestore() {
+  data() {
     return {
-      orders: db.collection("orders").orderBy("createdAt", "desc")
+      loading: false,
+      text: "Place order",
+      fadeIn: "",
+      disable: "disable"
     };
   },
-  components: { NavBar },
+  components: { Products, NavBar },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
@@ -96,7 +104,11 @@ export default {
       googleSignIn: "auth/googleSignIn",
       addToCart: "cart/addToCart"
     }),
-
+    setnewvalue() {
+      this.text = "Please Wait. . .";
+      this.fadeIn = "fadeIn";
+      this.disable = "";
+    },
     async placeOrder() {
       if (this.loading) return;
       if (this.getTotal == 0) return;
@@ -110,27 +122,27 @@ export default {
           this.loading = false;
         }
       } else {
-        this.askAddress();
+        let address = "Y1, Sector-18";
+        this.checkout({ address });
       }
     },
     askAddress() {
-      this.loading = true;
-      let user = this.user;
-      this.$dialog.prompt({
-        confirmText: "Confirm Order",
-        message: `Address:`,
-        inputAttrs: {
-          value: user.address,
-          placeholder: "Y-1, Sector-18"
-        },
-        onConfirm: address => {
-          this.checkout({ address });
-          this.loading = false;
-        },
-        onCancel: res => {
-          this.loading = false;
-        }
-      });
+      //   this.loading = true;
+      //   let user = this.user;
+      //   this.$dialog.prompt({
+      //     confirmText: "Confirm Order",
+      //     message: `Address:`,
+      //     inputAttrs: {
+      //       value: user.address,
+      //       placeholder: "Y-1, Sector-18"
+      //     },
+      //     onConfirm: address => {
+      //       this.loading = false;
+      //     },
+      //     onCancel: res => {
+      //       this.loading = false;
+      //     }
+      //   });
     }
   }
 };
@@ -151,11 +163,22 @@ export default {
 h1 {
   font-size: 14px;
   padding-left: 26px;
-  margin-top: -16px;
+
   color: #3baaec;
+}
+h5 {
+  font-size: 17px;
+  margin-top: 0px;
+  color: #3baaec;
+  text-align: -webkit-center;
 }
 h3 {
   font-size: 23px;
+}
+h4 {
+  font-size: 14px;
+  padding-left: 26px;
+  color: #3baaec;
 }
 .border {
   border: none;
@@ -170,9 +193,8 @@ h3 {
   padding-top: 10px;
 }
 .margin_phn {
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-top: -16px;
+  padding-left: 28px;
+  padding-right: 28px;
 }
 textarea {
   height: 60px;
@@ -217,22 +239,24 @@ textarea {
 .button {
   font-family: Karla, Roboto, sans-serif;
   text-transform: uppercase;
-  color: #fff;
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
-  border-color: #fbb140;
+  color: black;
+  border-color: lightgray;
   -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
     0 1px 3px rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
   width: 100%;
   display: block;
-  padding: 7px;
   font-size: 1.25rem;
   line-height: 1.5;
   border-radius: 0.3rem;
+  padding: 7px;
+  outline: none;
+  background: lightgray;
+  border: none;
 }
-.grey {
+.gray {
   font-size: 23px;
-  color: grey;
+  color: gray;
 }
 .shadow-lg2 {
   box-shadow: 0 -1rem 3rem rgba(0, 0, 0, 0.175) !important;
@@ -245,14 +269,15 @@ textarea {
   padding-top: 50px;
   font-size: 17px;
 }
-.img {
+.img1 {
   text-align: -webkit-center;
-
+  /* height: 92px; */
   padding-top: 3px;
 }
 img {
   height: 92px;
 }
+
 input[type="text"],
 input[type="tel"],
 textarea {
@@ -273,6 +298,43 @@ textarea {
   font-size: 13px;
   border-radius: 6px;
   outline: none;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fadeIn {
+  -webkit-animation: fadeIn 3s infinite;
+  -moz-animation: fadeIn 3s infinite;
+  -o-animation: fadeIn 3s infinite;
+  animation: fadeIn 3s infinite;
+}
+.disable {
+  color: #f6f7fa;
+  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+  border-color: #fb6340;
+}
+.email {
+  letter-spacing: 1px;
+  text-transform: capitalize;
 }
 </style>
 

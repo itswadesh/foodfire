@@ -16,7 +16,8 @@
           <div class="border">
             <h5>ORDER ID: {{o[".key"]}}</h5>
           </div>
-          <h1>{{o.name}}</h1>
+
+          <h1>{{user.name}}</h1>
           <div class="add_date_align">
             <div>
               <h2>{{o.address}}</h2>

@@ -8,20 +8,40 @@
       <center v-if="cartItems.length==0">
         <div class="container">
           <div class="card shadow-lg2">
-            <img
-              class="image"
-              src="/bag-black.svg"
-            />
-            <h2 class="grey">
+            <div> <img
+                class="image"
+                src="/empty1.png"
+              /></div>
+            <h2 class="h2">
               Please go back to Restaurant menu and add some food to continue...</h2>
+            <div class="footer">
+              <a>
+                <div class="cart-total footer">
+                  <div class="container2 ">
+                    <div class="card shadow-lg2 w100">
+                      <div>
+                        <div class="is-mobile">
+                          <div class="back-arrw">
+                            <button
+                              class="button"
+                              @click="go('/')"
+                            >
+                              <div class="align_pickup">
+                                <div class="back_btn">
+                                </div>
+                                <img src="/backarrow.svg" />
+                                <div><span>Back to Menu</span></div>
+                              </div>
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
           </div>
-          <nuxt-link
-            to="/"
-            class="button"
-          >
-            <img src="/backarrow.svg" />
-            Back to Menu
-          </nuxt-link>
         </div>
       </center>
       <products
@@ -49,8 +69,12 @@
                     <button
                       class="button"
                       :disabled="getTotal==0 || loading"
-                      @click="placeOrder()"
-                    >Place Order</button>
+                      @click="go('/address'),placeOrder()"
+                    >
+                      <div class="align_pickup">
+                        <div><span>Log in For Delivery</span></div>
+                      </div>
+                    </button>
                   </div>
                 </div>
                 <div class="is-mobile">
@@ -97,7 +121,9 @@ export default {
       googleSignIn: "auth/googleSignIn",
       addToCart: "cart/addToCart"
     }),
-
+    go(url) {
+      this.$router.push(url);
+    },
     async placeOrder() {
       if (this.loading) return;
       if (this.getTotal == 0) return;
@@ -140,6 +166,7 @@ export default {
 .container {
   position: relative;
   overflow: scroll;
+  padding-top: 19px;
 }
 .footer {
   background: #fff;
@@ -148,6 +175,10 @@ export default {
   bottom: 0;
   width: 100%;
   text-align: center;
+}
+.back-arrw {
+  padding-bottom: 10px;
+  padding-top: 10px;
 }
 .image {
   padding-left: 0%;
@@ -169,6 +200,7 @@ export default {
   border: 0.0625rem solid rgba(0, 0, 0, 0.05);
   border-radius: 0.25rem;
   position: relative;
+  padding-top: 20px;
 }
 .align {
   display: flex;
@@ -177,7 +209,7 @@ export default {
 }
 .button {
   font-family: Karla, Roboto, sans-serif;
-  text-transform: uppercase;
+  text-transform: initial;
   color: #fff;
   background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
   border-color: #fb6340;
@@ -190,10 +222,12 @@ export default {
   line-height: 1.5;
   border-radius: 0.3rem;
   padding: 7px;
+  outline: none;
 }
-.grey {
+.h2 {
   font-size: 23px;
-  color: grey;
+  color: #8a6224;
+  font-family: monospace;
 }
 .shadow-lg2 {
   box-shadow: 0 -1rem 3rem rgba(0, 0, 0, 0.175) !important;
@@ -208,6 +242,47 @@ export default {
   right: 0;
   text-align: center;
   margin-bottom: 175px;
+}
+@-webkit-keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+.fadeIn {
+  -webkit-animation: fadeIn 3s infinite;
+  -moz-animation: fadeIn 3s infinite;
+  -o-animation: fadeIn 3s infinite;
+  animation: fadeIn 3s infinite;
+}
+.gps_svg {
+  padding-top: 3px;
+  padding-left: 6px;
+}
+.back_btn {
+  padding-top: 3px;
+  padding-right: 6px;
+}
+.align_pickup {
+  display: flex;
+  justify-content: center;
+  flex-direction: row;
 }
 </style>
 

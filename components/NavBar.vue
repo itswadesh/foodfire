@@ -9,6 +9,7 @@
         <a class="navbar-item a1">
           <router-link to="/">
             <img
+              class="logo"
               src="~/static/logo.png"
               alt="FoodFire"
               height="28"
@@ -17,6 +18,25 @@
         </a>
       </div>
       <div class="iconcenter">
+        <div class="iconalign2">
+          <a
+            role="button"
+            class="navbaritem boxbtn1"
+            aria-label="menu"
+            @click="go('')"
+          >
+            <img
+              class="img"
+              v-if="user"
+              :src="user.avatar"
+            />
+            <img
+              v-else
+              class="img"
+              src="/person.svg"
+            />
+          </a>
+        </div>
         <div class="iconalign1">
           <a
             role="button"
@@ -24,7 +44,7 @@
             aria-label="menu"
             @click="go('/cart')"
           >
-           <img src="/bag.svg"/>
+            <img src="/bag.svg" />
           </a>
         </div>
         <div class="iconalign">
@@ -34,19 +54,28 @@
             aria-label="menu"
             @click="go('/my/orders')"
           >
-            <img src="/orderstatus.svg"/>
+            <img src="/orderstatus.svg" />
           </a>
         </div>
       </div>
     </div>
   </nav>
-
 </template>
   <script>
 export default {
+  data() {
+    return {
+      loading: false
+    };
+  },
   methods: {
     go(url) {
       this.$router.push(url);
+    }
+  },
+  computed: {
+    user() {
+      return (this.$store.state.auth || {}).user || null;
     }
   }
 };
@@ -55,8 +84,7 @@ export default {
 .navbar-item img {
   max-height: 2.3rem;
 }
-.navbar-brand,
- { 
+.navbar-brand {
   align-items: stretch;
   display: flex;
   flex-shrink: 0;
@@ -76,23 +104,30 @@ export default {
 .iconalign {
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 92%;
   height: 100%;
-  padding-left: 24px;
-  padding-right: 15px;
+  padding-left: 7px;
+  padding-right: 14px;
 }
 .iconalign1 {
   display: flex;
   align-items: center;
+  width: 78%;
+  height: 100%;
+  padding-left: 0px;
+}
+.iconalign2 {
+  display: flex;
+  align-items: center;
   width: 100%;
   height: 100%;
-  padding-left: 33px;
+  padding-left: 0px;
+  padding-top: 1px;
 }
 .navbar.is-primary .navbar-brand > a.navbar-item:hover {
   background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
 }
-img 
-{
+img {
   height: auto;
   max-width: 100%;
 }
@@ -118,7 +153,7 @@ a.navbar-item {
 .navbar-link {
   color: #4a4a4a;
   display: block;
-  line-height: 1.5;
+  /* line-height: 1.5; */
   padding: 0.5rem 0.75rem;
   position: relative;
   flex-grow: 0;
@@ -149,7 +184,13 @@ a.navbar-item {
   padding-left: 158px;
 }
 .boxbtn {
-  width: 100%;
+  width: 82%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+.boxbtn1 {
+  width: 67%;
   height: 100%;
   display: flex;
   align-items: center;
@@ -158,6 +199,15 @@ a.navbar-item {
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+.logo {
+  width: 31px;
+  margin-top: 3px;
+}
+.img {
+  width: 42px;
+  height: 28px;
+  border-radius: 54px;
 }
 </style>
 

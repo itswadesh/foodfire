@@ -1,6 +1,10 @@
 <template>
-<body>
-    <img src="~/static/hero.jpeg" />
+
+  <body>
+    <img
+      class="blur"
+      src="~/static/hero.jpeg"
+    />
     <div class="heading">
       <div
         class="link link--move"
@@ -43,6 +47,10 @@ export default {
   overflow: hidden;
   line-height: 0.75;
   color: snow;
+}
+.blur {
+  filter: blur(1.5px);
+  -webkit-filter: blur(1.5px);
 }
 
 .link--move:hover {
