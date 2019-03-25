@@ -101,10 +101,10 @@ const actions = {
             let i = cartItems[ix]
             items.push({ name: i.name || '', description: i.description || '', img: i.img || '', price: i.price || 0, qty: i.qty || 1 })
         }
-        let orderDetails = { createdAt: new Date(), name: name || '', address: address || '', email, items: items || [], status: 'Pending', amount: { total: getters.getTotal, details: { qty: getters.getTotalCount, discount: getters.getDiscount, shipping: getters.getShippingAmount, subtotal: getters.getSubtotal } } }
+        let orderDetails = { createdAt: new Date(), name: name || '', address: address || '', email, items: items || [], status: 'Pending', amount: { total: getters.getTotal, qty: getters.getTotalCount, discount: getters.getDiscount, shipping: getters.getShippingAmount, subtotal: getters.getSubtotal } }
         try {
-            db.collection("orders").add(orderDetails);
-            this.$router.push('/success?id=COD&amount=' + getters.getTotal)
+            let newOrder = await db.collection("orders").add(orderDetails);
+            this.$router.push(`/success?id=${newOrder.id}`)
         } catch (err) {
             if (err.response)
                 commit('setErr', err.response.msg, { root: true }) // used at order.controller

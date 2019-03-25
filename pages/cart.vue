@@ -68,11 +68,12 @@
                   <div>
                     <button
                       class="button"
-                      :disabled="getTotal==0 || loading"
-                      @click="go('/address'),placeOrder()"
+                      :disabled="loading"
+                      @click="goToCheckout"
                     >
                       <div class="align_pickup">
-                        <div><span>Log in For Delivery</span></div>
+                        <span v-if="!user.email">Login For Delivery</span>
+                        <span v-else>Proceed to checkout</span>
                       </div>
                     </button>
                   </div>
@@ -124,21 +125,13 @@ export default {
     go(url) {
       this.$router.push(url);
     },
-    async placeOrder() {
-      if (this.loading) return;
-      if (this.getTotal == 0) return;
-      this.loading = true;
+    async goToCheckout() {
       if (!this.user) {
-        try {
-          await this.googleSignIn();
-          this.loading = false;
-          this.askAddress();
-        } catch (e) {
-          this.loading = false;
-        }
+        await this.googleSignIn();
       } else {
-        let address = "Y1, Sector-18";
-        this.checkout({ address });
+        try {
+          this.$router.push("/address");
+        } catch (e) {}
       }
     },
     askAddress() {

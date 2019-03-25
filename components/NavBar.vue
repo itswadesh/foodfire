@@ -205,9 +205,9 @@ a.navbar-item {
   margin-top: 3px;
 }
 .img {
-  width: 42px;
+  width: 54px;
   height: 28px;
-  border-radius: 54px;
+  border-radius: 50px;
 }
 </style>
 

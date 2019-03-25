@@ -1,20 +1,23 @@
 <template>
-  <div>
+  <div v-if="profile">
     <nav-bar />
     <div class="img1">
-      <img src="/personlogo.png">
+      <img
+        :src="profile.avatar"
+        class="rounded"
+      >
     </div>
     <div class="card shadow-lg2 columns">
       <div class="margin">
         <label for="login"></label>
-        <h5 v-if="user"><u>{{user.name}}</u></h5>
+        <h5 v-if="profile"><u>{{profile.name}}</u></h5>
         <input
           type="text"
           name="Email"
           placeholder="Email Address*"
           value=required
-          v-if="user"
-          v-model="user.email"
+          v-if="profile"
+          v-model="profile.email"
           disabled
         >
       </div>
@@ -26,11 +29,15 @@
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           placeholder="Phone no*"
           required
+          v-model="profile.phone"
         >
       </p>
       <h1>Enter Address: </h1>
       <div class="margin">
-        <textarea placeholder="Enter Address Here*"></textarea></div>
+        <textarea
+          placeholder="Enter Address Here*"
+          v-model="profile.address"
+        ></textarea></div>
     </div>
     <div class="footer">
       <a v-if="!cartItems.length==0">
@@ -52,7 +59,7 @@
                       class="button"
                       :class="disable"
                       :disabled="getTotal==0 || loading"
-                      @click="setnewvalue()"
+                      @click="placeOrder()"
                     ><span :class="fadeIn">{{text}}</span>
                     </button>
                   </div>
@@ -75,6 +82,14 @@ const Products = () => import("~/components/Products");
 const NavBar = () => import("~/components/NavBar");
 export default {
   props: ["products"],
+  async asyncData({ store }) {
+    let profile = {};
+    let userDetails = await store.dispatch("auth/fetch");
+    profile = Object.assign({}, userDetails);
+    profile.dob = profile.dob || {};
+    profile.state = profile.state || {};
+    return { profile };
+  },
   data() {
     return {
       loading: false,
@@ -85,9 +100,9 @@ export default {
   },
   components: { Products, NavBar },
   computed: {
-    user() {
-      return (this.$store.state.auth || {}).user || null;
-    },
+    // user() {
+    //   return (this.$store.state.auth || {}).user || null;
+    // },
     ...mapState({
       shipping: state => state.shipping || {},
       totalAmount: state => state.cart.totalAmount || 0,
@@ -104,50 +119,59 @@ export default {
       googleSignIn: "auth/googleSignIn",
       addToCart: "cart/addToCart"
     }),
-    setnewvalue() {
-      this.text = "Please Wait. . .";
-      this.fadeIn = "fadeIn";
-      this.disable = "";
-    },
     async placeOrder() {
       if (this.loading) return;
       if (this.getTotal == 0) return;
+      if (!this.profile || this.profile == "") {
+        alert("Phone number required");
+        return;
+      }
+      if (!this.profile.address || this.profile.address == "") {
+        alert("Address is mandatory");
+        return;
+      }
+      this.text = "Please Wait. . .";
+      this.fadeIn = "fadeIn";
+      this.disable = true;
       this.loading = true;
-      if (!this.user) {
+      if (!this.profile) {
         try {
           await this.googleSignIn();
           this.loading = false;
-          this.askAddress();
+          // this.askAddress();
         } catch (e) {
           this.loading = false;
         }
       } else {
-        let address = "Y1, Sector-18";
-        this.checkout({ address });
+        // let address = "Y1, Sector-18";
+        this.checkout({ address: this.profile.address });
       }
-    },
-    askAddress() {
-      //   this.loading = true;
-      //   let user = this.user;
-      //   this.$dialog.prompt({
-      //     confirmText: "Confirm Order",
-      //     message: `Address:`,
-      //     inputAttrs: {
-      //       value: user.address,
-      //       placeholder: "Y-1, Sector-18"
-      //     },
-      //     onConfirm: address => {
-      //       this.loading = false;
-      //     },
-      //     onCancel: res => {
-      //       this.loading = false;
-      //     }
-      //   });
     }
+    // askAddress() {
+    //   this.loading = true;
+    //   let user = this.user;
+    //   this.$dialog.prompt({
+    //     confirmText: "Confirm Order",
+    //     message: `Address:`,
+    //     inputAttrs: {
+    //       value: user.address,
+    //       placeholder: "Y-1, Sector-18"
+    //     },
+    //     onConfirm: address => {
+    //       this.loading = false;
+    //     },
+    //     onCancel: res => {
+    //       this.loading = false;
+    //     }
+    //   });
+    // }
   }
 };
 </script>
 <style scoped>
+.rounded {
+  border-radius: 50px;
+}
 .align {
   display: -webkit-box;
   display: -ms-flexbox;
