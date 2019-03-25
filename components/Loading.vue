@@ -1,15 +1,14 @@
 <template lang="html">
-  <div class="loading-page" v-if="loading">
-    <transition>
-        <svg class="spinner" width="44px" height="44px" viewBox="0 0 44 44">
-        <circle class="path" fill="none" stroke-width="4" stroke-linecap="round" cx="22" cy="22" r="20"/>
-        </svg>
-    </transition>
-    <!-- <p>Loading...</p> -->
+  <div class="loading-page" v-if="loading || active">
+    <img src="/loading.svg" alt="loading ..."/>
   </div>
 </template>
+
 <script>
 export default {
+  props: {
+    active: { type: Boolean, required: false }
+  },
   data: () => ({
     loading: false
   }),
@@ -23,6 +22,7 @@ export default {
   }
 };
 </script>
+
 <style scoped>
 .spinner {
   transition: opacity 0.15s ease;
@@ -131,6 +131,7 @@ export default {
     transform: rotate(450deg);
   }
 }
+
 .loading-page {
   position: fixed;
   top: 0;
@@ -142,5 +143,6 @@ export default {
   padding-top: 200px;
   font-size: 30px;
   font-family: sans-serif;
+  z-index: 10000;
 }
 </style>

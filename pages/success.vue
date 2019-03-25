@@ -1,8 +1,5 @@
 <template>
   <div>
-    <div>
-      <nav-bar />
-    </div>
     <div class="container head">
       <div>
         <div v-if="order">
@@ -88,10 +85,9 @@
 </template>
 <script>
 import { clearCart } from "@/config";
-const NavBar = () => import("~/components/NavBar");
 import { db } from "~/service/firebase";
 export default {
-  components: { NavBar },
+  components: {},
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;

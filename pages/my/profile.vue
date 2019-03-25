@@ -1,6 +1,5 @@
 <template>
   <div v-if="profile">
-    <nav-bar />
     <div class="img1">
       <img
         :src="profile.avatar"
@@ -8,78 +7,17 @@
       >
     </div>
     <div class="card shadow-lg2 columns">
-      <div class="margin">
+      <div class="center">
         <label for="login"></label>
-        <h5 v-if="profile"><u>{{profile.name}}</u></h5>
-        <input
-          type="text"
-          name="Email"
-          placeholder="Email Address*"
-          value=required
-          v-if="profile"
-          v-model="profile.email"
-          disabled
-        >
+        <h5 v-if="profile">{{profile.name}}</h5>
+        <h3>{{profile.email}}</h3>
       </div>
-      <p class="margin_phn">
-        <label for="Phone no"></label>
-        <input
-          type="tel"
-          name='Phone no'
-          pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
-          placeholder="Phone no*"
-          required
-          v-model="profile.phone"
-        >
-      </p>
-      <h1>Enter Address: </h1>
-      <div class="margin">
-        <textarea
-          placeholder="Enter Address Here*"
-          v-model="profile.address"
-        ></textarea></div>
-    </div>
-    <div class="footer">
-      <a v-if="!cartItems.length==0">
-        <div class="cart-total footer">
-          <div class="container2 ">
-            <div class="card shadow-lg2 w100">
-              <div>
-                <div class="is-mobile">
-                  <div class="align">
-                    <div class="amount_align">
-                      <p class="gray">Total Amount</p>
-                    </div>
-                    <div>
-                      <h2>{{getTotal | currency}}</h2>
-                    </div>
-                  </div>
-                  <div>
-                    <button
-                      class="button"
-                      :class="disable"
-                      :disabled="getTotal==0 || loading"
-                      @click="placeOrder()"
-                    ><span :class="fadeIn">{{text}}</span>
-                    </button>
-                  </div>
-                </div>
-                <div class="is-mobile">
-                  <p class="green">Please allow us 45mins for delivery</p>
-                </div>
-                <div class="cart-total-after"> </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </a>
     </div>
   </div>
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 const Products = () => import("~/components/Products");
-const NavBar = () => import("~/components/NavBar");
 export default {
   props: ["products"],
   async asyncData({ store }) {
@@ -98,7 +36,7 @@ export default {
       disable: "disable"
     };
   },
-  components: { Products, NavBar },
+  components: { Products },
   computed: {
     // user() {
     //   return (this.$store.state.auth || {}).user || null;

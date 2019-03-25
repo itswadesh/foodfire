@@ -4,7 +4,11 @@ module.exports = {
   mode: 'spa',
   head,
   manifest,
-  loading: '~/components/Loading.vue',
+  loading: {
+    name: 'circle',
+    color: '#3B8070',
+    background: 'white'
+  },
   css: ['~assets/styles/reset.css', '~assets/styles/transitions.css'],
   plugins: [
     '~/plugins/filters.js',

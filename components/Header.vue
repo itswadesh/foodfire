@@ -10,7 +10,7 @@
           <router-link to="/">
             <img
               class="logo"
-              src="~/static/logo.png"
+              src="/logo.png"
               alt="FoodFire"
               height="28"
             >
@@ -23,17 +23,18 @@
             role="button"
             class="navbaritem boxbtn1"
             aria-label="menu"
-            @click="go('')"
           >
             <img
               class="img"
               v-if="user"
               :src="user.avatar"
+              @click="go('/my/profile')"
             />
             <img
               v-else
               class="img"
               src="/person.svg"
+              @click="googleSignIn()"
             />
           </a>
         </div>
@@ -42,7 +43,7 @@
             role="button"
             class="navbaritem boxbtn"
             aria-label="menu"
-            @click="go('/cart')"
+            @click="go('/cart',false)"
           >
             <img src="/bag.svg" />
           </a>
@@ -52,7 +53,7 @@
             role="button"
             class="navbaritem boxbtn"
             aria-label="menu"
-            @click="go('/my/orders')"
+            @click="go('/my/orders',true)"
           >
             <img src="/orderstatus.svg" />
           </a>
@@ -62,6 +63,8 @@
   </nav>
 </template>
   <script>
+import { mapActions } from "vuex";
+
 export default {
   data() {
     return {
@@ -69,9 +72,16 @@ export default {
     };
   },
   methods: {
-    go(url) {
-      this.$router.push(url);
-    }
+    go(url, auth) {
+      if (auth && !this.user) {
+        this.googleSignIn();
+      } else {
+        this.$router.push(url);
+      }
+    },
+    ...mapActions({
+      googleSignIn: "auth/googleSignIn"
+    })
   },
   computed: {
     user() {

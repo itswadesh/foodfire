@@ -1,6 +1,5 @@
 <template>
   <div>
-    <nav-bar />
     <div class="head">
       <center class="title">
         <strong>My Cart</strong>
@@ -72,7 +71,7 @@
                       @click="goToCheckout"
                     >
                       <div class="align_pickup">
-                        <span v-if="!user.email">Login For Delivery</span>
+                        <span v-if="!user || !user.email">Login For Delivery</span>
                         <span v-else>Proceed to checkout</span>
                       </div>
                     </button>
@@ -93,7 +92,6 @@
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
 const Products = () => import("~/components/Products");
-const NavBar = () => import("~/components/NavBar");
 export default {
   props: ["products"],
   data() {
@@ -101,7 +99,7 @@ export default {
       loading: false
     };
   },
-  components: { Products, NavBar },
+  components: { Products },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null;
@@ -130,27 +128,9 @@ export default {
         await this.googleSignIn();
       } else {
         try {
-          this.$router.push("/address");
+          this.$router.push("/checkout");
         } catch (e) {}
       }
-    },
-    askAddress() {
-      //   this.loading = true;
-      //   let user = this.user;
-      //   this.$dialog.prompt({
-      //     confirmText: "Confirm Order",
-      //     message: `Address:`,
-      //     inputAttrs: {
-      //       value: user.address,
-      //       placeholder: "Y-1, Sector-18"
-      //     },
-      //     onConfirm: address => {
-      //       this.loading = false;
-      //     },
-      //     onCancel: res => {
-      //       this.loading = false;
-      //     }
-      //   });
     }
   }
 };

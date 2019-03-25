@@ -25,19 +25,17 @@ export const mutations = {
 }
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, { req }) {
+    let auth = this.$cookies.get('Authorization')
+
     // Cart
     if (this.$cookies) {
       try {
         commit('cart/storeCart', this.$cookies.get('ArialShop_items'))
-        // await dispatch('cart/fetch')
-        // return true
       }
       catch (error) {
         console.log('fetch cart error', error)
-        // return false
       }
     } else {
-      // return false
     }
 
     if (auth) {
@@ -52,7 +50,6 @@ export const actions = {
     } else {
       return false
     }
-
   },
   async nuxtClientInit({ commit, dispatch }, context) {
     let auth = this.$cookies.get('Authorization')

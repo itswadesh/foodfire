@@ -1,10 +1,11 @@
 <template>
   <div>
-    <nav-bar />
     <center class="title">
       <strong class="font">My Order History</strong>
     </center>
+    <Loading :active="!orders || !orders[0]" />
     <div
+      v-if="!!user"
       v-for="o in orders"
       :key="o._id"
       :title="`${o.name} => ${o.address}`"
@@ -23,7 +24,11 @@
               <h2>{{o.address}}</h2>
             </div>
             <div class="date">
-              <h4>Date: **/**/**** </h4>
+              <h4>Date: {{o["createdAt"].toDate().toLocaleDateString('en-GB', {
+                day : 'numeric',
+                month : 'short',
+                year : 'numeric'
+                })}} </h4>
             </div>
           </div>
         </div>
@@ -60,19 +65,18 @@
 </template>
 <script>
 import { mapState, mapGetters, mapActions } from "vuex";
-import CartButtonsVue from "~/components/CartButtons.vue";
+const Loading = () => import("~/components/Loading");
 import { db } from "~/service/firebase";
-const NavBar = () => import("~/components/NavBar");
 export default {
-  data() {
-    return {};
+  fetch({ store, redirect }) {
+    if (!(store.state.auth || {}).user) return redirect("/");
   },
-  components: { NavBar },
+  components: { Loading },
   firestore() {
     return {
       orders: db
         .collection("orders")
-        .where("email", "==", "2lessons@gmail.com")
+        .where("email", "==", this.$store.state.auth.user.email)
         .orderBy("createdAt", "desc")
     };
   },

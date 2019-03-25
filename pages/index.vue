@@ -1,27 +1,30 @@
 <template>
-  <div v-if="settings[0]">
-    <nav-bar />
-    <hero :closed="settings[0].closed" />
-    <info />
-    <products
-      :products="products"
-      :showcart="true"
-    />
-    <overlay :closed="settings[0].closed" />
-    <cart-bar />
+  <div>
+    <Loading :active="!settings || !settings[0]" />
+    <div v-if="settings[0]">
+      <hero :closed="settings[0].closed" />
+      <info />
+      <products
+        :products="products"
+        :showcart="true"
+      />
+      <overlay :closed="settings[0].closed" />
+      <cart-bar />
+    </div>
   </div>
 </template>
 <script>
+const Loading = () => import("~/components/Loading");
 const Overlay = () => import("~/components/Overlay");
 const Products = () => import("~/components/Products");
 const Info = () => import("~/components/Info");
 const Hero = () => import("~/components/Hero");
 const CartBar = () => import("~/components/CartBar");
-const NavBar = () => import("~/components/NavBar");
 import { db } from "~/service/firebase";
 export default {
   data() {
     return {
+      loading: false,
       closed: true,
       settings: [],
       products: []
@@ -46,6 +49,6 @@ export default {
     }
   },
   async created() {},
-  components: { Overlay, Products, Info, Hero, CartBar, NavBar }
+  components: { Loading, Overlay, Products, Info, Hero, CartBar }
 };
 </script>
