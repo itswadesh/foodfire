@@ -17,7 +17,7 @@
           </router-link>
         </a>
       </div>
-      <div class="header-right">
+      <div class="header-right navbar-item">
         <a
           role="button"
           href="https://github.com/itswadesh/foodfire"
@@ -29,7 +29,6 @@
           aria-label="menu"
         >
           <img
-            class="img"
             v-if="user"
             :src="user.avatar"
             @click="go('/my/profile')"
