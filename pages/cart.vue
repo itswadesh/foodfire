@@ -6,40 +6,40 @@
       </center>
       <center v-if="cartItems.length==0">
         <div class="container">
-          <div class="card shadow-lg2">
-            <div> <img
-                class="image"
-                src="/empty1.png"
-              /></div>
-            <h2 class="h2">
-              Please go back to Restaurant menu and add some food to continue...</h2>
-            <div class="footer">
-              <a>
-                <div class="cart-total footer">
-                  <div class="container2 ">
-                    <div class="card shadow-lg2 w100">
-                      <div>
-                        <div class="is-mobile">
-                          <div class="back-arrw">
-                            <button
-                              class="button"
-                              @click="go('/')"
-                            >
-                              <div class="align_pickup">
-                                <div class="back_btn">
-                                </div>
-                                <img src="/backarrow.svg" />
-                                <div><span>Back to Menu</span></div>
+          <div>
+            <img
+              class="empty-cart"
+              src="/empty-cart.svg"
+            />
+          </div>
+          <h2> There's nothing in here </h2>
+          <h5>You have not added any items to your cart yet.</h5>
+          <div class="footer">
+            <a>
+              <div class="cart-total footer">
+                <div class="container2 ">
+                  <div class="card shadow-lg2 w100">
+                    <div>
+                      <div class="is-mobile">
+                        <div class="back-arrw">
+                          <button
+                            class="button"
+                            @click="go('/')"
+                          >
+                            <div class="align_pickup">
+                              <div class="back_btn">
                               </div>
-                            </button>
-                          </div>
+                              <img src="/backarrow.svg" />
+                              <div><span>Back to Menu</span></div>
+                            </div>
+                          </button>
                         </div>
                       </div>
                     </div>
                   </div>
                 </div>
-              </a>
-            </div>
+              </div>
+            </a>
           </div>
         </div>
       </center>
@@ -136,9 +136,11 @@ export default {
 };
 </script>
 <style scoped>
+img.empty-cart {
+  width: 200px;
+}
 .container {
   position: relative;
-  overflow: scroll;
   padding-top: 19px;
 }
 .footer {
@@ -156,24 +158,6 @@ export default {
 .image {
   padding-left: 0%;
   height: 53px;
-}
-.card {
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  min-width: 0;
-  word-wrap: break-word;
-  background-color: #fff;
-  background-clip: border-box;
-  border: 0.0625rem solid rgba(0, 0, 0, 0.05);
-  border-radius: 0.25rem;
-  position: relative;
-  padding-top: 20px;
 }
 .align {
   display: flex;

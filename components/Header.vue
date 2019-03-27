@@ -49,6 +49,7 @@
           <img src="/bag.svg" />
         </a>
         <a
+          v-if="user"
           role="button"
           aria-label="menu"
           @click="go('/my/orders',true)"
@@ -145,11 +146,11 @@ export default {
 .navbar.is-primary .navbar-brand > a.navbar-item:hover {
   background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
 }
-img {
-  height: auto;
-  max-width: 100%;
-}
 .navbar-item img {
+  width: 24px;
+  height: 24px;
+  max-width: 100%;
+  border-radius: 50px;
   max-height: 1.75rem;
 }
 a {
