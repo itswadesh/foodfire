@@ -17,47 +17,44 @@
           </router-link>
         </a>
       </div>
-      <div class="iconcenter">
-        <div class="iconalign2">
-          <a
-            role="button"
-            class="navbaritem boxbtn1"
-            aria-label="menu"
-          >
-            <img
-              class="img"
-              v-if="user"
-              :src="user.avatar"
-              @click="go('/my/profile')"
-            />
-            <img
-              v-else
-              class="img"
-              src="/person.svg"
-              @click="googleSignIn()"
-            />
-          </a>
-        </div>
-        <div class="iconalign1">
-          <a
-            role="button"
-            class="navbaritem boxbtn"
-            aria-label="menu"
-            @click="go('/cart',false)"
-          >
-            <img src="/bag.svg" />
-          </a>
-        </div>
-        <div class="iconalign">
-          <a
-            role="button"
-            class="navbaritem boxbtn"
-            aria-label="menu"
-            @click="go('/my/orders',true)"
-          >
-            <img src="/orderstatus.svg" />
-          </a>
-        </div>
+      <div class="header-right">
+        <a
+          role="button"
+          href="https://github.com/itswadesh/foodfire"
+        >
+          ⭐me @ GitHub
+        </a>
+        <a
+          role="button"
+          aria-label="menu"
+        >
+          <img
+            class="img"
+            v-if="user"
+            :src="user.avatar"
+            @click="go('/my/profile')"
+          />
+          <img
+            v-else
+            class="img"
+            src="/person.svg"
+            @click="googleSignIn()"
+          />
+        </a>
+        <a
+          role="button"
+          aria-label="menu"
+          @click="go('/cart',false)"
+        >
+          <img src="/bag.svg" />
+        </a>
+        <a
+          role="button"
+          aria-label="menu"
+          @click="go('/my/orders',true)"
+        >
+          <img src="/orderstatus.svg" />
+        </a>
       </div>
     </div>
   </nav>
@@ -90,9 +87,20 @@ export default {
   }
 };
 </script>
-    <style>
+    <style scoped>
+.header-right {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.header-right a {
+  padding: 5px;
+  color: white;
+}
 .navbar-item img {
-  max-height: 2.3rem;
+  width: 24px;
+  height: 24px;
+  border-radius: 50px;
 }
 .navbar-brand {
   align-items: stretch;
@@ -214,11 +222,9 @@ a.navbar-item {
   width: 31px;
   margin-top: 3px;
 }
-.img {
-  width: 54px;
-  height: 28px;
+/* .img {
+  width: 34px;
+  height: 37px;
   border-radius: 50px;
-}
+} */
 </style>
-
-    

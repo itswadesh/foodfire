@@ -1,7 +1,7 @@
 {
   "name": "foodfire",
   "version": "1.2.0",
-  "description": "Get awesome food delivered at your home",
+  "description": "Ready to use NuxtJS + Firebase Shopping APP for Food Ordering",
   "author": "Swadesh Behera",
   "license": "MIT",
   "private": false,
