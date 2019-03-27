@@ -17,7 +17,7 @@
           </router-link>
         </a>
       </div>
-      <div class="header-right navbar-item">
+      <div class="header-right navbar-item fx">
         <a
           role="button"
           href="https://github.com/itswadesh/foodfire"
@@ -170,12 +170,7 @@ a.navbar-item {
 .navbar-item,
 .navbar-link {
   color: #4a4a4a;
-  display: block;
-  /* line-height: 1.5; */
-  padding: 0.5rem 0.75rem;
-  position: relative;
-  flex-grow: 0;
-  flex-shrink: 0;
+  padding: 0.5rem;
 }
 .a1 {
   display: flex;
