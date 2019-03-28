@@ -1,7 +1,10 @@
-<template lang="html">
-  <div class="loading-page" v-if="loading || active">
-    <img src="/loading.svg" alt="loading ..."/>
-  </div>
+<template>
+   <div id="wave"  v-if="loading || active">
+    <span class="dot olive"></span>
+    <span class="dot blue"></span>
+	<span class="dot green"></span>
+    <span class="dot red"></span>
+</div> 
 </template>
 
 <script>
@@ -23,117 +26,24 @@ export default {
 };
 </script>
 
-<style scoped>
-.spinner {
-  transition: opacity 0.15s ease;
-  animation: rotator 1.4s linear infinite;
-  animation-play-state: paused;
+<style lang="css" scoped>
+div#wave .fuchsia{
+	background:rgba(255,0,255,0.5);
 }
-.spinner.show {
-  animation-play-state: running;
+div#wave .olive{
+	background:rgba(128,128,0,0.5);
 }
-.spinner.v-enter,
-.spinner.v-leave-active {
-  opacity: 0;
+div#wave .blue{
+	background:rgba(0,0,255,0.5);
 }
-.spinner.v-enter-active,
-.spinner.v-leave {
-  opacity: 1;
+div#wave .green{
+	background:rgba(0,128,0,0.5);
 }
-.spinner .path {
-  stroke: #f60;
-  stroke-dasharray: 126;
-  stroke-dashoffset: 0;
-  transform-origin: center;
-  animation: dash 1.4s ease-in-out infinite;
+div#wave .red{
+	background:rgba(255,0,0,0.5);
 }
-@-moz-keyframes rotator {
-  0% {
-    transform: scale(0.5) rotate(0deg);
-  }
-  100% {
-    transform: scale(0.5) rotate(270deg);
-  }
-}
-@-webkit-keyframes rotator {
-  0% {
-    transform: scale(0.5) rotate(0deg);
-  }
-  100% {
-    transform: scale(0.5) rotate(270deg);
-  }
-}
-@-o-keyframes rotator {
-  0% {
-    transform: scale(0.5) rotate(0deg);
-  }
-  100% {
-    transform: scale(0.5) rotate(270deg);
-  }
-}
-@keyframes rotator {
-  0% {
-    transform: scale(0.5) rotate(0deg);
-  }
-  100% {
-    transform: scale(0.5) rotate(270deg);
-  }
-}
-@-moz-keyframes dash {
-  0% {
-    stroke-dashoffset: 126;
-  }
-  50% {
-    stroke-dashoffset: 63;
-    transform: rotate(135deg);
-  }
-  100% {
-    stroke-dashoffset: 126;
-    transform: rotate(450deg);
-  }
-}
-@-webkit-keyframes dash {
-  0% {
-    stroke-dashoffset: 126;
-  }
-  50% {
-    stroke-dashoffset: 63;
-    transform: rotate(135deg);
-  }
-  100% {
-    stroke-dashoffset: 126;
-    transform: rotate(450deg);
-  }
-}
-@-o-keyframes dash {
-  0% {
-    stroke-dashoffset: 126;
-  }
-  50% {
-    stroke-dashoffset: 63;
-    transform: rotate(135deg);
-  }
-  100% {
-    stroke-dashoffset: 126;
-    transform: rotate(450deg);
-  }
-}
-@keyframes dash {
-  0% {
-    stroke-dashoffset: 126;
-  }
-  50% {
-    stroke-dashoffset: 63;
-    transform: rotate(135deg);
-  }
-  100% {
-    stroke-dashoffset: 126;
-    transform: rotate(450deg);
-  }
-}
-
-.loading-page {
-  position: fixed;
+div#wave {
+	position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -141,8 +51,36 @@ export default {
   background: rgba(255, 255, 255, 0.8);
   text-align: center;
   padding-top: 200px;
-  font-size: 30px;
-  font-family: sans-serif;
   z-index: 10000;
+}
+div#wave .dot {
+		display:inline-block;
+		width:12px;
+		height:12px;
+		border-radius:50%;
+		margin-right:3px;
+		
+		animation: wave 1.3s linear infinite;
+	}
+    div#wave .dot:nth-child(2) {
+			animation-delay: -1.1s;
+		} 
+div#wave .dot:nth-child(3) {
+			animation-delay: -0.9s;
+		}
+div#wave .dot:nth-child(4) {
+			animation-delay: -0.7s;
+		}
+div#wave .dot:nth-child(5) {
+			animation-delay: -0.5s;
+		}
+@keyframes wave {
+	0%, 60%, 100% {
+		transform: initial;
+	}
+
+	30% {
+		transform: translateY(-7px);
+	}
 }
 </style>

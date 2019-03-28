@@ -4,31 +4,34 @@
       <section class="message-body">
         <div>
           <div class="media-content">
+            <div class="webrow">
             <div class="columns is-mobile">
               <div class="column">
                 <p class="grey">Delivery time</p>
                 <div>45 minutes</div>
               </div>
-              <div class="column">
+              <div class="column pl-10">
                 <p class="grey">Delivery free</p>
-                <div>above {{50 | currency}}</div>
+                <div class="w-132">above {{50 | currency}}</div>
               </div>
             </div>
             <div class="columns is-mobile">
               <div class="column">
                 <p class="grey">Delivery hours</p>
-                <div>11:30AM - 10:30PM</div>
+                <div class="w-132">11:30AM - 10:30PM</div>
               </div>
-              <div class="column">
+              <div class="column pl-10">
                 <p class="grey">Minimum order</p>
                 <div>{{0 | currency}}</div>
               </div>
             </div>
+             </div>
             <div class="green">
               <center>
                 <b>Delivery is now open</b>
               </center>
             </div>
+           
           </div>
         </div>
       </section>
@@ -58,6 +61,32 @@ export default {};
   text-align: left;
   padding-top: 23px;
 }
+@media  (min-width:900px) and (max-width:2000px) 
+{
+   .w-132  {
+ width: 132px;
+  }
+}
+@media  (min-width:900px) and (max-width:2000px) 
+{
+   .pl-10  {
+  padding-left: 40px;
+  }
+}
+@media  (min-width:900px) and (max-width:2000px) 
+{
+   .columns.is-mobile {
+   display: flex;
+   flex-direction: row;
+  }
+}
+@media (min-width:900px) and (max-width:2000px) {
+   .webrow{
+   display: flex;
+   flex-direction: row;
+   justify-content:space-around;
+  }
+}
 .columns.is-mobile {
   display: flex;
 }
@@ -73,6 +102,12 @@ export default {};
 .green {
   color: green;
   margin-top:1.5rem;
+}
+@media (min-width:900px) and (max-width:2000px) {
+   .green{
+   
+  margin-top:-1.5rem;
+  }
 }
 p{
   margin-bottom:5px;

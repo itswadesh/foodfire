@@ -1,13 +1,16 @@
 <template>
 
   <body>
-    <img
-      class="blur"
+    <div class="backgroundimg height">
+
+    </div>
+    <!-- <img
+      class="blur img"
       src="~/static/hero.jpeg"
-    />
+    /> -->
     <div class="heading">
       <div
-        class="link link--move"
+        class="link link--move title"
         data-letters="Foodfire"
       >Foodfire</div>
     </div>
@@ -25,12 +28,24 @@ export default {
 };
 </script>
 <style scoped>
+.backgroundimg{
+  background: url('https://www.telenews.pk/wp-content/uploads/2018/02/axomlive.jpg') ;
+background-repeat: no-repeat;
+background-size: cover;
+    background-position: 50%;
+}
+.height{
+  height: 30vh;
+  width: 100%;
+}
+
+
 .heading {
-  padding-left: 37px;
-  margin-top: -90px;
-  padding-bottom: 13px;
-  font-size: 25px;
-  color: snow;
+ margin-top: -90px;
+    padding-bottom: 13px;
+    font-size: 25px;
+    /* color: snow; */
+    text-align: center;
 }
 .link {
   outline: none;
@@ -48,9 +63,11 @@ export default {
   line-height: 0.75;
   color: snow;
 }
-.blur {
-  filter: blur(1.5px);
-  -webkit-filter: blur(1.5px);
+.title {
+padding: 1rem;
+    background-color: rgba(0,0,0,0.5);
+    width: 350px;
+    font-size: 2rem;
 }
 
 .link--move:hover {
@@ -64,7 +81,7 @@ export default {
   top: 50%;
   margin-top: -8px;
   right: 0;
-  background: #f9f9f9;
+  background:rgba(235, 109, 37, 0.5);
   transform: translate3d(-100%, 0, 0);
   transition: transform 0.4s;
   transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);

@@ -49,6 +49,6 @@ export default {
     }
   },
   async created() {},
-  components: { Loading, Overlay, Products, Info, Hero, CartBar }
+  components: { Loading,Overlay, Products, Info, Hero, CartBar }
 };
 </script>
