@@ -13,16 +13,15 @@ module.exports = {
   plugins: [
     '~/plugins/filters.js',
     '~/plugins/firestore.js',
-    { src: '~plugins/lazy', ssr: false }
+    { src: '~plugins/lazy', ssr: false },
+    { src: '~/plugins/init.js', ssr: false }
   ],
   modules: [
     '@nuxtjs/sitemap',
-    'nuxt-robots-module',
-    '@nuxtjs/dotenv',
     '@nuxtjs/component-cache',
     '@nuxtjs/pwa',
     '@nuxtjs/toast',
-    'nuxt-client-init-module',
+    '@nuxtjs/robots',
     'cookie-universal-nuxt',
     ['@nuxtjs/google-analytics', { id: ANALYTICS_TRACKING_ID }]
   ],
