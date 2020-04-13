@@ -8,50 +8,26 @@
       <div class="navbar-brand">
         <a class="navbar-item a1">
           <router-link to="/">
-            <img
-              class="logo"
-              src="/logo.png"
-              alt="FoodFire"
-              height="28"
-            >
+            <img class="logo" src="/logo.png" alt="FoodFire" height="28" />
           </router-link>
         </a>
       </div>
       <div class="header-right navbar-item fx">
-        <a
-          role="button"
-          href="https://github.com/itswadesh/foodfire"
-        >
+        <a role="button" href="https://github.com/itswadesh/foodfire">
           ⭐me @ GitHub
         </a>
-        <a
-          role="button"
-          aria-label="menu"
-        >
-          <img
-            v-if="user"
-            :src="user.avatar"
-            @click="go('/my/profile')"
-          />
-          <img
-            v-else
-            class="img"
-            src="/person.svg"
-            @click="googleSignIn()"
-          />
+        <a role="button" aria-label="menu">
+          <img v-if="user" :src="user.avatar" @click="go('/my/profile')" />
+          <img v-else class="img" src="/person.svg" @click="googleSignIn()" />
         </a>
-        <a
-          role="button"
-          aria-label="menu"
-          @click="go('/cart',false)"
-        >
+        <a role="button" aria-label="menu" @click="go('/cart', false)">
           <img src="/bag.svg" />
         </a>
         <a
           v-if="user"
           role="button"
           aria-label="menu"
-          @click="go('/my/orders',true)"
+          @click="go('/my/orders', true)"
         >
           <img src="/orderstatus.svg" />
         </a>
@@ -59,35 +35,35 @@
     </div>
   </nav>
 </template>
-  <script>
-import { mapActions } from "vuex";
+<script>
+import { mapActions } from 'vuex'
 
 export default {
   data() {
     return {
       loading: false
-    };
+    }
   },
   methods: {
     go(url, auth) {
       if (auth && !this.user) {
-        this.googleSignIn();
+        this.googleSignIn()
       } else {
-        this.$router.push(url);
+        this.$router.push(url)
       }
     },
     ...mapActions({
-      googleSignIn: "auth/googleSignIn"
+      googleSignIn: 'auth/googleSignIn'
     })
   },
   computed: {
     user() {
-      return (this.$store.state.auth || {}).user || null;
+      return (this.$store.state.auth || {}).user || null
     }
   }
-};
+}
 </script>
-    <style scoped>
+<style scoped>
 .header-right {
   display: inline-flex;
   align-items: center;

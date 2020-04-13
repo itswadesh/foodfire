@@ -1,51 +1,40 @@
 <template>
-
   <body>
-    <div class="backgroundimg height">
-
-    </div>
-    <!-- <img
-      class="blur img"
-      src="~/static/hero.jpeg"
-    /> -->
+    <div class="backgroundimg height"></div>
     <div class="heading">
-      <div
-        class="link link--move title"
-        data-letters="Foodfire"
-      >Foodfire</div>
+      <div class="link link--move title" data-letters="Foodfire">Foodfire</div>
     </div>
   </body>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
+import { mapState, mapGetters, mapActions } from 'vuex'
 export default {
   data() {
     return {
       loading: false,
-      props: ["closed"]
-    };
+      props: ['closed']
+    }
   }
-};
+}
 </script>
 <style scoped>
-.backgroundimg{
-  background: url('https://www.telenews.pk/wp-content/uploads/2018/02/axomlive.jpg') ;
-background-repeat: no-repeat;
-background-size: cover;
-    background-position: 50%;
+.backgroundimg {
+  background: url('/food.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
 }
-.height{
+.height {
   height: 30vh;
   width: 100%;
 }
 
-
 .heading {
- margin-top: -90px;
-    padding-bottom: 13px;
-    font-size: 25px;
-    /* color: snow; */
-    text-align: center;
+  margin-top: -90px;
+  padding-bottom: 13px;
+  font-size: 25px;
+  /* color: snow; */
+  text-align: center;
 }
 .link {
   outline: none;
@@ -64,24 +53,24 @@ background-size: cover;
   color: snow;
 }
 .title {
-padding: 1rem;
-    background-color: rgba(0,0,0,0.5);
-    width: 350px;
-    font-size: 2rem;
+  padding: 1rem;
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 350px;
+  font-size: 2rem;
 }
 
 .link--move:hover {
   color: #77f0f6;
 }
 .link--move::after {
-  content: "";
+  content: '';
   position: absolute;
   height: 16px;
   width: 100%;
   top: 50%;
   margin-top: -8px;
   right: 0;
-  background:rgba(235, 109, 37, 0.5);
+  background: rgba(235, 109, 37, 0.5);
   transform: translate3d(-100%, 0, 0);
   transition: transform 0.4s;
   transition-timing-function: cubic-bezier(0.7, 0, 0.3, 1);
@@ -104,6 +93,3 @@ padding: 1rem;
   width: 100%;
 }
 </style>
-
-
-

@@ -1,17 +1,11 @@
 import firebase from 'firebase/app'
-import { auth } from "firebase";
+import 'firebase/auth'
 import 'firebase/firestore'
-import { apiKey, projectId, authDomain } from '~/config';
-
-// let firebaseApp = null
+import { apiKey, projectId, authDomain } from '~/config'
 if (!firebase.apps.length) {
-  firebase.initializeApp({ apiKey, projectId, authDomain });
+  firebase.initializeApp({ apiKey, projectId, authDomain })
 }
-let db = firebase.firestore();
+let db = firebase.firestore()
 
-const googleAuthProvider = new auth.GoogleAuthProvider();
-// Enabling this will force the user to select account.
-// googleAuthProvider.setCustomParameters({
-//   prompt: 'select_account'
-// });
+const googleAuthProvider = new firebase.auth.GoogleAuthProvider()
 export { db, firebase, googleAuthProvider }

@@ -1,26 +1,49 @@
 <template>
   <div class="align">
     <div
-      v-if="!checkCart({_id:product._id})"
-      @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:1});"
+      v-if="!checkCart({ _id: product._id })"
+      @click="
+        addToCart({
+          _id: product._id,
+          name: product.name,
+          img: product.img,
+          price: product.price,
+          qty: 1
+        })
+      "
     >
       <button class="button1 buttonrounded1 btnalign">
         <img src="/plus.svg" />
       </button>
-
     </div>
     <div v-else>
       <div class="size1">
         <button
           class="button1 buttonrounded1 "
-          @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:-1});"
+          @click="
+            addToCart({
+              _id: product._id,
+              name: product.name,
+              img: product.img,
+              price: product.price,
+              qty: -1
+            })
+          "
         >
           <img src="/minus.svg" />
         </button>
-        <span class="size2">{{getQty({_id:product._id})}}</span>
+        <span class="size2">{{ getQty({ _id: product._id }) }}</span>
         <button
           class="button1 button.is-danger buttonrounded1 btnplus-clr"
-          @click="addToCart({_id:product._id,name:product.name,img:product.img,price:product.price,qty:1});"
+          @click="
+            addToCart({
+              _id: product._id,
+              name: product.name,
+              img: product.img,
+              price: product.price,
+              qty: 1
+            })
+          "
         >
           <img src="/plus.svg" />
         </button>
@@ -29,12 +52,12 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions, mapMutations } from "vuex";
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 export default {
-  props: ["product"],
+  props: ['product'],
   methods: {
     ...mapActions({
-      addToCart: "cart/addToCart"
+      addToCart: 'cart/addToCart'
     })
   },
   computed: {
@@ -44,14 +67,14 @@ export default {
       cartItems: state => state.cart.items || []
     }),
     ...mapGetters({
-      checkCart: "cart/checkCart",
-      checkviewdetails: "viewdetails/checkviewdetails",
-      getQty: "cart/getQty"
+      checkCart: 'cart/checkCart',
+      checkviewdetails: 'viewdetails/checkviewdetails',
+      getQty: 'cart/getQty'
     })
   }
-};
+}
 </script>
-<style>
+<style scoped>
 .size1 {
   display: flex;
   flex-direction: row;
@@ -132,6 +155,4 @@ export default {
 .addalign {
   padding-top: 4px;
 }
-
 </style>
-

@@ -2,10 +2,14 @@
   box-sizing: border-box;
   -webkit-font-smoothing: antialiased;
 }
-body{
-  font-family: 'Karla', Roboto, sans-serif
+body {
+  font-family: 'Karla', Roboto, sans-serif;
 }
-html, body, ul, ol, fieldset {
+html,
+body,
+ul,
+ol,
+fieldset {
   margin: 0;
   padding: 0;
 }
@@ -23,6 +27,21 @@ img {
 }
 .sitecontent img {
   width: 100%;
+}
+img[lazy='loaded'] {
+  animation-name: fadein;
+  animation-duration: 2s;
+}
+img[lazy='loading'] {
+  filter: blur(10px);
+}
+@keyframes fadein {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 @media screen and (max-width: 800px) {
   .sitecontent img {

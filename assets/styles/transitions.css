@@ -1,8 +1,10 @@
-.page-enter-active, .page-leave-active {
-  transition: opacity .5s
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
 }
-.page-enter, .page-leave-active {
-  opacity: 0
+.page-enter,
+.page-leave-active {
+  opacity: 0;
 }
 .slide-left-enter,
 .slide-right-leave-active {
@@ -26,7 +28,7 @@
 .mb-36 {
   margin-bottom: -36px;
 }
-.flex{
+.flex {
   display: flex;
   justify-content: space-between;
   align-items: center;

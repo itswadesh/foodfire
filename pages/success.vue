@@ -7,27 +7,35 @@
             <div class="align">
               <div>
                 <div class="card svgcard">
-                  <img
-                    class="svgheight"
-                    src="/circleright.svg"
-                  />
-                  <h3 class="text-primary-light font-weight-bold">Thank You!!!</h3>
+                  <img class="svgheight" src="/circleright.svg" />
+                  <h3 class="text-primary-light font-weight-bold">
+                    Thank You!!!
+                  </h3>
                 </div>
-                <br>
+                <br />
                 <div>
                   <h2>
-                    Your order request has been received <small>successfully.</small>
+                    Your order request has been received
+                    <small>successfully.</small>
                   </h2>
-                  <p class="font">Transaction ID: <span class="font-weight-bold">{{order[".key"]}}</span></p>
-                  <h4>You will receive a message or call regarding the confirmation of the product.</h4>
-                  <h5><strong>Note: </strong>Your order will be sent to you, usually within 1hr.</h5>
+                  <p class="font">
+                    Transaction ID:
+                    <span class="font-weight-bold">{{ order['.key'] }}</span>
+                  </p>
+                  <h4>
+                    You will receive a message or call regarding the
+                    confirmation of the product.
+                  </h4>
+                  <h5>
+                    <strong>Note: </strong>Your order will be sent to you,
+                    usually within 1hr.
+                  </h5>
                 </div>
-                <div
-                  class="address mb-3 "
-                  v-if="order.address"
-                >
-                  <span class="name">{{order.name}}</span><br />
-                  <span class="name">{{order.address}}</span><br />
+                <div class="address mb-3 " v-if="order.address">
+                  <span class="name">{{ order.name }}</span
+                  ><br />
+                  <span class="name">{{ order.address }}</span
+                  ><br />
                 </div>
               </div>
               <div>
@@ -39,29 +47,26 @@
                     class="product"
                     v-for="(p, index) in order.items"
                     :key="index"
-                    :to="'/'+p.slug+'?id='+p.pid"
+                    :to="'/' + p.slug + '?id=' + p.pid"
                   >
                     <div class="flex product_card columns">
                       <div class="image">
-                        <img
-                          v-lazy="p.img"
-                          alt=""
-                        />
+                        <img v-lazy="p.img" alt="" />
                       </div>
                       <div>
                         <span>{{ p.name }}</span>
                       </div>
                       <div class="price-align">
-                        <div class="big">{{p.price | currency}}</div>
+                        <div class="big">{{ p.price | currency }}</div>
                       </div>
                     </div>
                   </nuxt-link>
                 </div>
                 <h6>
-                  <u>For customer service</u><br> Please contact:<router-link
-                    class="cursor"
-                    to=""
-                  > care@foodfire.in</router-link>
+                  <u>For customer service</u><br />
+                  Please contact:<router-link class="cursor" to="">
+                    care@foodfire.in</router-link
+                  >
                 </h6>
               </div>
             </div>
@@ -70,58 +75,53 @@
       </div>
     </div>
     <div class="btn_align1 footer">
-      <a
-        type
-        class="btn btn-block btn-white1 btn-lg btncontent"
-      >
+      <a type class="btn btn-block btn-white1 btn-lg btncontent">
         <img src="/backarrow.svg" />
-        <router-link
-          to="/"
-          class="btnclr"
-        >Restaurant Menu</router-link>
-      </a></div>
+        <router-link to="/" class="btnclr">Restaurant Menu</router-link>
+      </a>
+    </div>
     <!-- <router-link to="/my/orders" class="button is-dark">Find My Previous Orders</router-link> -->
   </div>
 </template>
 <script>
-import { clearCart } from "@/config";
-import { db } from "~/service/firebase";
+import { clearCart } from '@/config'
+import { db } from '~/service/firebase'
 export default {
   components: {},
   computed: {
     user() {
-      return (this.$store.state.auth || {}).user || null;
+      return (this.$store.state.auth || {}).user || null
     }
   },
   firestore() {
     if (this.$route.query.id)
       return {
         order: db.collection(`orders`).doc(this.$route.query.id)
-      };
-    else return { order: {} };
+      }
+    else return { order: {} }
   },
   async asyncData({ redirect, store, route }) {
-    store.commit("cart/clearCart", {});
-    return { orderNo: route.query.id };
+    store.commit('cart/clearCart', {})
+    return { orderNo: route.query.id }
   },
   methods: {
     cancelOrder() {
-      console.log("Cancel order  requested");
+      console.log('Cancel order  requested')
     }
   },
   head() {
     return {
-      title: "Order Success",
+      title: 'Order Success',
       meta: [
         {
-          hid: "description",
-          name: "description",
-          content: "Order placed successfully"
+          hid: 'description',
+          name: 'description',
+          content: 'Order placed successfully'
         }
       ]
-    };
+    }
   }
-};
+}
 </script>
 <style scoped>
 .btnclr {

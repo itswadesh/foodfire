@@ -15,91 +15,97 @@
       <div class="card shadow-lg2">
         <div class="border">
           <div class="border">
-            <h5>ORDER ID: {{o[".key"]}}</h5>
+            <h5>ORDER ID: {{ o['.key'] }}</h5>
           </div>
 
-          <h1>{{user.name}}</h1>
+          <h1>{{ user.name }}</h1>
           <div class="add_date_align">
             <div>
-              <h2>{{o.address}}</h2>
+              <h2>{{ o.address }}</h2>
             </div>
             <div class="date">
-              <h4>Date: {{o["createdAt"].toDate().toLocaleDateString('en-GB', {
-                day : 'numeric',
-                month : 'short',
-                year : 'numeric'
-                })}} </h4>
+              <h4>
+                Date:
+                {{
+                  o['createdAt'].toDate().toLocaleDateString('en-GB', {
+                    day: 'numeric',
+                    month: 'short',
+                    year: 'numeric'
+                  })
+                }}
+              </h4>
             </div>
           </div>
         </div>
         <div class="columns is-mobile border ">
-          <div
-            class="is-mobile"
-            v-for="(i,ix) in o.items"
-            :key="ix"
-          >
+          <div class="is-mobile" v-for="(i, ix) in o.items" :key="ix">
             <div class="media-content">
               <div class="align">
-                <div class="item_namealign">{{ix+1}}.</div>
-                <div> <img v-lazy="i.img" /> </div>
-                <div class="item_namealign"><strong>{{i.name}} </strong></div>
-                <div class="item_namealign"><strong>{{i.price | currency}}</strong> x <strong>{{i.qty}}</strong></div>
+                <div class="item_namealign">{{ ix + 1 }}.</div>
+                <div><img v-lazy="i.img" /></div>
+                <div class="item_namealign">
+                  <strong>{{ i.name }} </strong>
+                </div>
+                <div class="item_namealign">
+                  <strong>{{ i.price | currency }}</strong> x
+                  <strong>{{ i.qty }}</strong>
+                </div>
               </div>
             </div>
           </div>
         </div>
         <div class="add_date_align">
           <div>
-            <h6>Order Status: {{o.status}}</h6>
+            <h6>Order Status: {{ o.status }}</h6>
           </div>
           <div>
-            <h3>Total: ₹{{o.amount.total}}</h3>
+            <h3>Total: ₹{{ o.amount.total }}</h3>
           </div>
         </div>
         <router-link to="">
-          <p> Need Help?</p>
+          <p>Need Help?</p>
         </router-link>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
-const Loading = () => import("~/components/Loading");
-import { db } from "~/service/firebase";
+import { mapState, mapGetters, mapActions } from 'vuex'
+const Loading = () => import('~/components/Loading')
+import { db } from '~/service/firebase'
 export default {
   fetch({ store, redirect }) {
-    if (!(store.state.auth || {}).user) return redirect("/");
+    if (!(store.state.auth || {}).user) return redirect('/')
   },
   components: { Loading },
   firestore() {
     return {
       orders: db
-        .collection("orders")
-        .where("email", "==", this.$store.state.auth.user.email)
-        .orderBy("createdAt", "desc")
-    };
+        .collection('orders')
+        .where('email', '==', this.$store.state.auth.user.email)
+        .orderBy('createdAt', 'desc')
+    }
   },
   computed: {
     user() {
-      return (this.$store.state.auth || {}).user || null;
+      return (this.$store.state.auth || {}).user || null
     }
   },
   methods: {
     changeStatus(o) {
-      db.collection("orders")
-        .doc(o[".key"])
+      db.collection('orders')
+        .doc(o['.key'])
         .update({
           status: o.status,
           updatedAt: new Date()
-        });
+        })
     },
     getStyle(o) {
-      let style = "";
-      return style;
+      let style = ''
+      return style
     }
   }
-};
+}
 </script>
 <style scoped>
 center {
@@ -218,4 +224,3 @@ p {
   font-size: 13px;
 }
 </style>
-

@@ -1,27 +1,26 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export const state = () => ({
   isError: null // Only required to inform App.vue that an error is there hence initiate the snackbar
 })
 export const mutations = {
   setSuccess(state, msg) {
-    this.$toast.success(msg).goAway(2000);
+    this.$toast.success(msg).goAway(2000)
   },
   setErr(state, err) {
     // console.log('global error at [store/index].....', err);
     const duration = err.duration || 3000
     const message = err.message || err
     if (err && err.response) {
-      this.$toast.error(err.response.data).goAway(duration);
+      this.$toast.error(err.response.data).goAway(duration)
       throw err.response.data
-    }
-    else {
-      this.$toast.error(message).goAway(duration);
+    } else {
+      this.$toast.error(message).goAway(duration)
       throw err // When it can not communicate to server
     }
-  },
+  }
 }
 export const actions = {
   async nuxtServerInit({ commit, dispatch }, { req }) {
@@ -31,8 +30,7 @@ export const actions = {
     if (this.$cookies) {
       try {
         commit('cart/storeCart', this.$cookies.get('ArialShop_items'))
-      }
-      catch (error) {
+      } catch (error) {
         console.log('fetch cart error', error)
       }
     } else {
@@ -42,8 +40,7 @@ export const actions = {
       try {
         await dispatch('auth/fetch')
         return true
-      }
-      catch (error) {
+      } catch (error) {
         console.log('fetch user error', error)
         return false
       }
@@ -60,8 +57,7 @@ export const actions = {
         commit('cart/storeCart', this.$cookies.get('ArialShop_items'))
         // await dispatch('cart/fetch') // Fetch from database
         // return true
-      }
-      catch (error) {
+      } catch (error) {
         console.log('fetch cart error', error)
       }
     } else {
@@ -71,8 +67,7 @@ export const actions = {
       try {
         await dispatch('auth/fetch')
         return true
-      }
-      catch (error) {
+      } catch (error) {
         console.log('fetch user error', error)
         return false
       }

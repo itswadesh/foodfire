@@ -1,6 +1,6 @@
 <template lang="html">
   <div class="loading-page" v-if="loading || active">
-    <img src="/loading.svg" alt="loading ..."/>
+    <img src="/loading.svg" alt="loading ..." />
   </div>
 </template>
 
@@ -14,13 +14,13 @@ export default {
   }),
   methods: {
     start() {
-      this.loading = true;
+      this.loading = true
     },
     finish() {
-      this.loading = false;
+      this.loading = false
     }
   }
-};
+}
 </script>
 
 <style scoped>

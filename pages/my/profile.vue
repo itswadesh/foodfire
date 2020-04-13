@@ -1,40 +1,37 @@
 <template>
   <div v-if="profile">
     <div class="img1">
-      <img
-        :src="profile.avatar"
-        class="rounded"
-      >
+      <img :src="profile.avatar" class="rounded" />
     </div>
     <div class="card shadow-lg2 columns">
       <div class="center">
         <label for="login"></label>
-        <h5 v-if="profile">{{profile.name}}</h5>
-        <h3>{{profile.email}}</h3>
+        <h5 v-if="profile">{{ profile.name }}</h5>
+        <h3>{{ profile.email }}</h3>
       </div>
     </div>
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
-const Products = () => import("~/components/Products");
+import { mapState, mapGetters, mapActions } from 'vuex'
+const Products = () => import('~/components/Products')
 export default {
-  props: ["products"],
+  props: ['products'],
   async asyncData({ store }) {
-    let profile = {};
-    let userDetails = await store.dispatch("auth/fetch");
-    profile = Object.assign({}, userDetails);
-    profile.dob = profile.dob || {};
-    profile.state = profile.state || {};
-    return { profile };
+    let profile = {}
+    let userDetails = await store.dispatch('auth/fetch')
+    profile = Object.assign({}, userDetails)
+    profile.dob = profile.dob || {}
+    profile.state = profile.state || {}
+    return { profile }
   },
   data() {
     return {
       loading: false,
-      text: "Place order",
-      fadeIn: "",
-      disable: "disable"
-    };
+      text: 'Place order',
+      fadeIn: '',
+      disable: 'disable'
+    }
   },
   components: { Products },
   computed: {
@@ -47,42 +44,42 @@ export default {
       cartItems: state => state.cart.items || []
     }),
     ...mapGetters({
-      checkCart: "cart/checkCart",
-      getTotal: "cart/getTotal"
+      checkCart: 'cart/checkCart',
+      getTotal: 'cart/getTotal'
     })
   },
   methods: {
     ...mapActions({
-      checkout: "cart/checkout",
-      googleSignIn: "auth/googleSignIn",
-      addToCart: "cart/addToCart"
+      checkout: 'cart/checkout',
+      googleSignIn: 'auth/googleSignIn',
+      addToCart: 'cart/addToCart'
     }),
     async placeOrder() {
-      if (this.loading) return;
-      if (this.getTotal == 0) return;
-      if (!this.profile || this.profile == "") {
-        alert("Phone number required");
-        return;
+      if (this.loading) return
+      if (this.getTotal == 0) return
+      if (!this.profile || this.profile == '') {
+        alert('Phone number required')
+        return
       }
-      if (!this.profile.address || this.profile.address == "") {
-        alert("Address is mandatory");
-        return;
+      if (!this.profile.address || this.profile.address == '') {
+        alert('Address is mandatory')
+        return
       }
-      this.text = "Please Wait. . .";
-      this.fadeIn = "fadeIn";
-      this.disable = true;
-      this.loading = true;
+      this.text = 'Please Wait. . .'
+      this.fadeIn = 'fadeIn'
+      this.disable = true
+      this.loading = true
       if (!this.profile) {
         try {
-          await this.googleSignIn();
-          this.loading = false;
+          await this.googleSignIn()
+          this.loading = false
           // this.askAddress();
         } catch (e) {
-          this.loading = false;
+          this.loading = false
         }
       } else {
         // let address = "Y1, Sector-18";
-        this.checkout({ address: this.profile.address });
+        this.checkout({ address: this.profile.address })
       }
     }
     // askAddress() {
@@ -104,7 +101,7 @@ export default {
     //   });
     // }
   }
-};
+}
 </script>
 <style scoped>
 .rounded {
@@ -240,8 +237,8 @@ img {
   height: 92px;
 }
 
-input[type="text"],
-input[type="tel"],
+input[type='text'],
+input[type='tel'],
 textarea {
   width: 100%;
   padding: 8px 4px 8px 10px;
@@ -255,7 +252,7 @@ textarea {
   box-shadow: 0 1px 0 #fbb140, inset 0 -2px 10px #e5f1f8;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-  font-family: "Raleway", "Lato", Arial, sans-serif;
+  font-family: 'Raleway', 'Lato', Arial, sans-serif;
   color: #47494e;
   font-size: 13px;
   border-radius: 6px;
@@ -299,4 +296,3 @@ textarea {
   text-transform: capitalize;
 }
 </style>
-

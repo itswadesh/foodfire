@@ -6,10 +6,7 @@
           <h1>404</h1>
           <h2 class="my-3 headline ">Sorry, page not found</h2>
           <div>
-            <button
-              class="button"
-              @click="goHome"
-            >Go Home</button>
+            <button class="button" @click="goHome">Go Home</button>
           </div>
         </div>
       </div>
@@ -18,12 +15,9 @@
       <div class="fx">
         <div class="text-md-center">
           <h1>500</h1>
-          <h2 class="my-3 headline ">Sorry, the server is down.</h2>
+          <h2 class="my-3 headline ">Sorry, an error occured.</h2>
           <div>
-            <button
-              class="button"
-              @click="goHome"
-            >Go Home</button>
+            <button class="button" @click="goHome">Go Home</button>
           </div>
         </div>
       </div>
@@ -33,14 +27,14 @@
 
 <script>
 export default {
-  props: ["error"],
+  props: ['error'],
   methods: {
     goHome() {
-      this.$router.push({ path: "/" });
+      this.$router.push({ path: '/' })
     }
   },
-  layout: "default" // you can set a custom layout for the error page
-};
+  layout: 'default' // you can set a custom layout for the error page
+}
 </script>
 
 <style scoped lang="css">

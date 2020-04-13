@@ -4,15 +4,12 @@
       <center class="title">
         <strong>My Cart</strong>
       </center>
-      <center v-if="cartItems.length==0">
+      <center v-if="cartItems.length == 0">
         <div class="container">
           <div>
-            <img
-              class="empty-cart"
-              src="/empty-cart.svg"
-            />
+            <img class="empty-cart" src="/empty-cart.svg" />
           </div>
-          <h2> There's nothing in here </h2>
+          <h2>There's nothing in here</h2>
           <h5>You have not added any items to your cart yet.</h5>
           <div class="footer">
             <a>
@@ -22,13 +19,9 @@
                     <div>
                       <div class="is-mobile">
                         <div class="back-arrw">
-                          <button
-                            class="button"
-                            @click="go('/')"
-                          >
+                          <button class="button" @click="go('/')">
                             <div class="align_pickup">
-                              <div class="back_btn">
-                              </div>
+                              <div class="back_btn"></div>
                               <img src="/backarrow.svg" />
                               <div><span>Back to Menu</span></div>
                             </div>
@@ -43,14 +36,10 @@
           </div>
         </div>
       </center>
-      <products
-        v-else
-        :products="cartItems"
-        :showcart="true"
-      />
+      <products v-else :products="cartItems" :showcart="true" />
     </div>
     <div class="footer">
-      <a v-if="!cartItems.length==0">
+      <a v-if="!cartItems.length == 0">
         <div class="cart-total footer">
           <div class="container2 ">
             <div class="card shadow-lg2 w100">
@@ -61,17 +50,20 @@
                       <p class="grey">Total Amount</p>
                     </div>
                     <div>
-                      <h2 class="big">{{getTotal | currency}}</h2>
+                      <h2 class="big">{{ getTotal | currency }}</h2>
                     </div>
                   </div>
                   <div>
                     <button
                       class="button"
+                      :class="[!loading ? 'primary' : '']"
                       :disabled="loading"
                       @click="goToCheckout"
                     >
                       <div class="align_pickup">
-                        <span v-if="!user || !user.email">Login For Delivery</span>
+                        <span v-if="!user || !user.email">
+                          Login For Delivery
+                        </span>
                         <span v-else>Proceed to checkout</span>
                       </div>
                     </button>
@@ -80,7 +72,7 @@
                 <div class="is-mobile">
                   <p class="green">Please allow us 45mins for delivery</p>
                 </div>
-                <div class="cart-total-after"> </div>
+                <div class="cart-total-after"></div>
               </div>
             </div>
           </div>
@@ -90,19 +82,19 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
-const Products = () => import("~/components/Products");
+import { mapState, mapGetters, mapActions } from 'vuex'
+const Products = () => import('~/components/Products')
 export default {
-  props: ["products"],
+  props: ['products'],
   data() {
     return {
       loading: false
-    };
+    }
   },
   components: { Products },
   computed: {
     user() {
-      return (this.$store.state.auth || {}).user || null;
+      return (this.$store.state.auth || {}).user || null
     },
     ...mapState({
       shipping: state => state.shipping || {},
@@ -110,30 +102,31 @@ export default {
       cartItems: state => state.cart.items || []
     }),
     ...mapGetters({
-      checkCart: "cart/checkCart",
-      getTotal: "cart/getTotal"
+      checkCart: 'cart/checkCart',
+      getTotal: 'cart/getTotal'
     })
   },
   methods: {
     ...mapActions({
-      checkout: "cart/checkout",
-      googleSignIn: "auth/googleSignIn",
-      addToCart: "cart/addToCart"
+      checkout: 'cart/checkout',
+      googleSignIn: 'auth/googleSignIn',
+      addToCart: 'cart/addToCart'
     }),
     go(url) {
-      this.$router.push(url);
+      this.$router.push(url)
     },
     async goToCheckout() {
+      this.loading = true
       if (!this.user) {
-        await this.googleSignIn();
+        await this.googleSignIn()
       } else {
         try {
-          this.$router.push("/checkout");
+          this.$router.push('/checkout')
         } catch (e) {}
       }
     }
   }
-};
+}
 </script>
 <style scoped>
 img.empty-cart {
@@ -164,12 +157,15 @@ img.empty-cart {
   flex-direction: row;
   justify-content: space-between;
 }
+.primary {
+  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
+  border-color: #fb6340;
+}
 .button {
   font-family: Karla, Roboto, sans-serif;
   text-transform: initial;
   color: #fff;
-  background: linear-gradient(87deg, #fb6340 0, #fbb140 100%) !important;
-  border-color: #fb6340;
+
   -webkit-box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
     0 1px 3px rgba(0, 0, 0, 0.08);
   box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
@@ -242,4 +238,3 @@ img.empty-cart {
   flex-direction: row;
 }
 </style>
-

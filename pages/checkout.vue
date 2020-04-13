@@ -1,45 +1,45 @@
 <template>
   <div v-if="profile">
     <div class="img1">
-      <img
-        :src="profile.avatar"
-        class="rounded"
-      >
+      <img :src="profile.avatar" class="rounded" />
     </div>
     <div class="card shadow-lg2 columns">
       <div class="margin">
         <label for="login"></label>
-        <h5 v-if="profile"><u>{{profile.name}}</u></h5>
+        <h5 v-if="profile">
+          <u>{{ profile.name }}</u>
+        </h5>
         <input
           type="text"
           name="Email"
           placeholder="Email Address*"
-          value=required
+          value="required"
           v-if="profile"
           v-model="profile.email"
           disabled
-        >
+        />
       </div>
       <p class="margin_phn">
         <label for="Phone no"></label>
         <input
           type="tel"
-          name='Phone no'
+          name="Phone no"
           pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}"
           placeholder="Phone no*"
           required
           v-model="profile.phone"
-        >
+        />
       </p>
-      <h1>Enter Address: </h1>
+      <h1>Enter Address:</h1>
       <div class="margin">
         <textarea
           placeholder="Enter Address Here*"
           v-model="profile.address"
-        ></textarea></div>
+        ></textarea>
+      </div>
     </div>
     <div class="footer">
-      <a v-if="!cartItems.length==0">
+      <a v-if="!cartItems.length == 0">
         <div class="cart-total footer">
           <div class="container2 ">
             <div class="card shadow-lg2 w100">
@@ -50,23 +50,24 @@
                       <p class="gray">Total Amount</p>
                     </div>
                     <div>
-                      <h2>{{getTotal | currency}}</h2>
+                      <h2>{{ getTotal | currency }}</h2>
                     </div>
                   </div>
                   <div>
                     <button
                       class="button"
                       :class="disable"
-                      :disabled="getTotal==0 || loading"
+                      :disabled="getTotal == 0 || loading"
                       @click="placeOrder()"
-                    ><span :class="fadeIn">{{text}}</span>
+                    >
+                      <span :class="fadeIn">{{ text }}</span>
                     </button>
                   </div>
                 </div>
                 <div class="is-mobile">
                   <p class="green">Please allow us 45mins for delivery</p>
                 </div>
-                <div class="cart-total-after"> </div>
+                <div class="cart-total-after"></div>
               </div>
             </div>
           </div>
@@ -76,25 +77,25 @@
   </div>
 </template>
 <script>
-import { mapState, mapGetters, mapActions } from "vuex";
-const Products = () => import("~/components/Products");
+import { mapState, mapGetters, mapActions } from 'vuex'
+const Products = () => import('~/components/Products')
 export default {
-  props: ["products"],
+  props: ['products'],
   async asyncData({ store }) {
-    let profile = {};
-    let userDetails = await store.dispatch("auth/fetch");
-    profile = Object.assign({}, userDetails);
-    profile.dob = profile.dob || {};
-    profile.state = profile.state || {};
-    return { profile };
+    let profile = {}
+    let userDetails = await store.dispatch('auth/fetch')
+    profile = Object.assign({}, userDetails)
+    profile.dob = profile.dob || {}
+    profile.state = profile.state || {}
+    return { profile }
   },
   data() {
     return {
       loading: false,
-      text: "Place order",
-      fadeIn: "",
-      disable: "disable"
-    };
+      text: 'Place order',
+      fadeIn: '',
+      disable: 'disable'
+    }
   },
   components: { Products },
   computed: {
@@ -107,44 +108,44 @@ export default {
       cartItems: state => state.cart.items || []
     }),
     ...mapGetters({
-      checkCart: "cart/checkCart",
-      getTotal: "cart/getTotal"
+      checkCart: 'cart/checkCart',
+      getTotal: 'cart/getTotal'
     })
   },
   methods: {
     ...mapActions({
-      checkout: "cart/checkout",
-      googleSignIn: "auth/googleSignIn",
-      addToCart: "cart/addToCart"
+      checkout: 'cart/checkout',
+      googleSignIn: 'auth/googleSignIn',
+      addToCart: 'cart/addToCart'
     }),
     async placeOrder() {
-      if (this.loading) return;
-      if (this.getTotal == 0) return;
-      if (!this.profile || this.profile.phone == "") {
-        alert("Phone number required");
-        return;
+      if (this.loading) return
+      if (this.getTotal == 0) return
+      if (!this.profile || this.profile.phone == '') {
+        alert('Phone number required')
+        return
       }
-      if (!this.profile.address || this.profile.address == "") {
-        alert("Address is mandatory");
-        return;
+      if (!this.profile.address || this.profile.address == '') {
+        alert('Address is mandatory')
+        return
       }
-      this.text = "Please Wait. . .";
-      this.fadeIn = "fadeIn";
-      this.disable = true;
-      this.loading = true;
+      this.text = 'Please Wait. . .'
+      this.fadeIn = 'fadeIn'
+      this.disable = true
+      this.loading = true
       if (!this.profile) {
         try {
-          await this.googleSignIn();
-          this.loading = false;
+          await this.googleSignIn()
+          this.loading = false
         } catch (e) {
-          this.loading = false;
+          this.loading = false
         }
       } else {
-        this.checkout({ address: this.profile.address });
+        this.checkout({ address: this.profile.address })
       }
     }
   }
-};
+}
 </script>
 <style scoped>
 .rounded {
@@ -280,8 +281,8 @@ img {
   height: 92px;
 }
 
-input[type="text"],
-input[type="tel"],
+input[type='text'],
+input[type='tel'],
 textarea {
   width: 100%;
   padding: 8px 4px 8px 10px;
@@ -295,7 +296,7 @@ textarea {
   box-shadow: 0 1px 0 #fbb140, inset 0 -2px 10px #e5f1f8;
   -webkit-transition: all 0.3s ease-out;
   transition: all 0.3s ease-out;
-  font-family: "Raleway", "Lato", Arial, sans-serif;
+  font-family: 'Raleway', 'Lato', Arial, sans-serif;
   color: #47494e;
   font-size: 13px;
   border-radius: 6px;
@@ -339,4 +340,3 @@ textarea {
   text-transform: capitalize;
 }
 </style>
-

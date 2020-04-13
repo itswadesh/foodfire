@@ -5,33 +5,32 @@
         <div>
           <div class="media-content">
             <div class="webrow">
-            <div class="columns is-mobile">
-              <div class="column">
-                <p class="grey">Delivery time</p>
-                <div>45 minutes</div>
+              <div class="columns is-mobile">
+                <div class="column">
+                  <p class="grey">Delivery time</p>
+                  <div>45 minutes</div>
+                </div>
+                <div class="column pl-10">
+                  <p class="grey">Delivery free</p>
+                  <div class="w-132">above {{ 50 | currency }}</div>
+                </div>
               </div>
-              <div class="column pl-10">
-                <p class="grey">Delivery free</p>
-                <div class="w-132">above {{50 | currency}}</div>
+              <div class="columns is-mobile">
+                <div class="column">
+                  <p class="grey">Delivery hours</p>
+                  <div class="w-132">11:30AM - 10:30PM</div>
+                </div>
+                <div class="column pl-10">
+                  <p class="grey">Minimum order</p>
+                  <div>{{ 0 | currency }}</div>
+                </div>
               </div>
             </div>
-            <div class="columns is-mobile">
-              <div class="column">
-                <p class="grey">Delivery hours</p>
-                <div class="w-132">11:30AM - 10:30PM</div>
-              </div>
-              <div class="column pl-10">
-                <p class="grey">Minimum order</p>
-                <div>{{0 | currency}}</div>
-              </div>
-            </div>
-             </div>
             <div class="green">
               <center>
                 <b>Delivery is now open</b>
               </center>
             </div>
-           
           </div>
         </div>
       </section>
@@ -39,7 +38,7 @@
   </div>
 </template>
 <script>
-export default {};
+export default {}
 </script>
 <style scoped>
 .message {
@@ -61,30 +60,27 @@ export default {};
   text-align: left;
   padding-top: 23px;
 }
-@media  (min-width:900px) and (max-width:2000px) 
-{
-   .w-132  {
- width: 132px;
+@media (min-width: 900px) and (max-width: 2000px) {
+  .w-132 {
+    width: 132px;
   }
 }
-@media  (min-width:900px) and (max-width:2000px) 
-{
-   .pl-10  {
-  padding-left: 40px;
+@media (min-width: 900px) and (max-width: 2000px) {
+  .pl-10 {
+    padding-left: 40px;
   }
 }
-@media  (min-width:900px) and (max-width:2000px) 
-{
-   .columns.is-mobile {
-   display: flex;
-   flex-direction: row;
+@media (min-width: 900px) and (max-width: 2000px) {
+  .columns.is-mobile {
+    display: flex;
+    flex-direction: row;
   }
 }
-@media (min-width:900px) and (max-width:2000px) {
-   .webrow{
-   display: flex;
-   flex-direction: row;
-   justify-content:space-around;
+@media (min-width: 900px) and (max-width: 2000px) {
+  .webrow {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
   }
 }
 .columns.is-mobile {
@@ -101,19 +97,14 @@ export default {};
 }
 .green {
   color: green;
-  margin-top:1.5rem;
+  margin-top: 1.5rem;
 }
-@media (min-width:900px) and (max-width:2000px) {
-   .green{
-   
-  margin-top:-1.5rem;
+@media (min-width: 900px) and (max-width: 2000px) {
+  .green {
+    margin-top: -1.5rem;
   }
 }
-p{
-  margin-bottom:5px;
+p {
+  margin-bottom: 5px;
 }
 </style>
-
-
-
-

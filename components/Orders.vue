@@ -12,12 +12,15 @@
           >
             <div class="columns is-mobile ">
               <div class="breadcrumb-pagination">
-                <h2>Name : {{o.name}}</h2>
-                <h3>Address:{{o.address}}</h3>
-                <h4>Total Amount:{{o.amount.total}}</h4>
+                <h2>Name : {{ o.name }}</h2>
+                <h3>Address:{{ o.address }}</h3>
+                <h4>Total Amount:{{ o.amount.total }}</h4>
                 <div
                   class="circle"
-                  v-bind:class="{active1: o.status=='PENDING',Pending:o.status=='Pending'}"
+                  v-bind:class="{
+                    active1: o.status == 'PENDING',
+                    Pending: o.status == 'Pending'
+                  }"
                   native-value="Pending"
                   @input="changeStatus()"
                   @click="update('Pending')"
@@ -25,12 +28,17 @@
                   <span>1</span>
                   <p
                     class="fntclr"
-                    v-bind:class="{Pending:o.status=='Pending'}"
-                  >Pending</p>
+                    v-bind:class="{ Pending: o.status == 'Pending' }"
+                  >
+                    Pending
+                  </p>
                 </div>
                 <div
                   class="circle "
-                  v-bind:class="{active2: o.status=='SHIPPED',Shipped:o.status=='Shipped'}"
+                  v-bind:class="{
+                    active2: o.status == 'SHIPPED',
+                    Shipped: o.status == 'Shipped'
+                  }"
                   native-value="Shipped"
                   type="is-warning"
                   @input="changeStatus(o)"
@@ -39,12 +47,17 @@
                   <span>2</span>
                   <p
                     class="fntclr"
-                    v-bind:class="{Shipped:o.status=='Shipped'}"
-                  >Shipped</p>
+                    v-bind:class="{ Shipped: o.status == 'Shipped' }"
+                  >
+                    Shipped
+                  </p>
                 </div>
                 <div
                   class="circle"
-                  v-bind:class="{active3: o.status=='DELIVERED',Delivered:o.status=='Delivered'}"
+                  v-bind:class="{
+                    active3: o.status == 'DELIVERED',
+                    Delivered: o.status == 'Delivered'
+                  }"
                   native-value="Delivered"
                   type="is-success"
                   @input="changeStatus(o)"
@@ -53,12 +66,17 @@
                   <span class="margin">3</span>
                   <p
                     class="fntclr2"
-                    v-bind:class="{Delivered:o.status=='Delivered'}"
-                  >Delivered</p>
+                    v-bind:class="{ Delivered: o.status == 'Delivered' }"
+                  >
+                    Delivered
+                  </p>
                 </div>
                 <div
                   class="circle"
-                  v-bind:class="{active4: o.status=='CANCELLED',Cancelled:o.status=='Cancelled'}"
+                  v-bind:class="{
+                    active4: o.status == 'CANCELLED',
+                    Cancelled: o.status == 'Cancelled'
+                  }"
                   native-value="Cancelled"
                   type="is-danger"
                   @input="changeStatus(o)"
@@ -67,8 +85,10 @@
                   <span class="margin">4</span>
                   <p
                     class="fntclr3"
-                    v-bind:class="{Cancelled:o.status=='Cancelled'}"
-                  > Cancelled</p>
+                    v-bind:class="{ Cancelled: o.status == 'Cancelled' }"
+                  >
+                    Cancelled
+                  </p>
                 </div>
               </div>
             </div>
@@ -76,13 +96,16 @@
               <div>
                 <div
                   class="rows is-mobile"
-                  v-for="(i,ix) in o.items"
+                  v-for="(i, ix) in o.items"
                   :key="ix"
                 >
                   <div class="media-content">
                     <div class="content">
-                      <strong class="front">{{ix+1}} - {{i.name}}</strong>
-                      <small class="front">{{i.price | currency}} (<strong>{{i.qty}}</strong>)</small>
+                      <strong class="front">{{ ix + 1 }} - {{ i.name }}</strong>
+                      <small class="front"
+                        >{{ i.price | currency }} (<strong>{{ i.qty }}</strong
+                        >)</small
+                      >
                     </div>
                   </div>
                 </div>
@@ -95,44 +118,44 @@
   </div>
 </template>
 <script>
-import { db } from "~/service/firebase";
+import { db } from '~/service/firebase'
 export default {
-  props: ["status"],
+  props: ['status'],
 
   firestore() {
     return {
-      orders: db.collection("orders").orderBy("createdAt", "desc")
-    };
+      orders: db.collection('orders').orderBy('createdAt', 'desc')
+    }
   },
 
   methods: {
     update: function(updated) {
-      alert("Do you want to submit for sure?");
-      console.log(updated);
+      alert('Do you want to submit for sure?')
+      console.log(updated)
     },
     showMessage: function() {},
 
     changeStatus(o) {
-      db.collection("orders")
-        .doc(o[".key"])
+      db.collection('orders')
+        .doc(o['.key'])
         .update({
           status: o.status,
           updatedAt: new Date()
-        });
+        })
     },
     getStyle(o) {
-      let style = "";
-      if (o.status === "Cancelled") {
-        style = "is-danger";
-      } else if (o.status === "Delivered") {
-        style = "is-success";
-      } else if (o.status === "Shipped") {
-        style = "is-warning";
+      let style = ''
+      if (o.status === 'Cancelled') {
+        style = 'is-danger'
+      } else if (o.status === 'Delivered') {
+        style = 'is-success'
+      } else if (o.status === 'Shipped') {
+        style = 'is-warning'
       }
-      return style;
+      return style
     }
   }
-};
+}
 </script>
 <style scoped>
 .margin {
@@ -297,11 +320,10 @@ h4 {
   font-weight: 700;
 }
 .active span::before {
-  content: "\2713";
+  content: '\2713';
 }
 h1 {
   font-family: Karla, Roboto, sans-serif;
   letter-spacing: 0px;
 }
 </style>
-
