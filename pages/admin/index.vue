@@ -2,11 +2,9 @@
   <div>
     <Loading :active="!orders || !orders[0]" />
 
-    <div class="pstn ">
+    <div class="pstn">
       <img src="/truck.svg" />
-      <h4 class="textalgn">
-        Admin Panel / Order History
-      </h4>
+      <h4 class="textalgn">Admin Panel / Order History</h4>
       <br />
     </div>
     <div
@@ -21,19 +19,21 @@
           <h6>Order Status: {{ o.status }}</h6>
         </div>
         <div class="border">
-          <div class="column is-mobile ">
+          <div class="column is-mobile">
             <div class="breadcrumb-pagination">
               <div
                 class="circle"
                 v-bind:class="{
                   active1: o.status == 'PENDING',
-                  Pending: o.status == 'Pending'
+                  Pending: o.status == 'Pending',
                 }"
                 native-value="Pending"
                 @input="changeStatus(o)"
                 @click="update('Pending')"
               >
-                <span><img class="svgsize" src="/forwardarrow.svg"/></span>
+                <span>
+                  <img class="svgsize" src="/forwardarrow.svg" />
+                </span>
                 <div>
                   <p
                     class="fntclr"
@@ -44,17 +44,19 @@
                 </div>
               </div>
               <div
-                class="circle "
+                class="circle"
                 v-bind:class="{
                   active2: o.status == 'SHIPPED',
-                  Shipped: o.status == 'Shipped'
+                  Shipped: o.status == 'Shipped',
                 }"
                 native-value="Shipped"
                 type="is-warning"
                 @input="changeStatus(o)"
                 @click="update('Shipped')"
               >
-                <span><img class="svgsize" src="/truckwhite.svg"/></span>
+                <span>
+                  <img class="svgsize" src="/truckwhite.svg" />
+                </span>
                 <div>
                   <p
                     class="fntclr"
@@ -68,14 +70,16 @@
                 class="circle"
                 v-bind:class="{
                   active3: o.status == 'DELIVERED',
-                  Delivered: o.status == 'Delivered'
+                  Delivered: o.status == 'Delivered',
                 }"
                 native-value="Delivered"
                 type="is-success"
                 @input="changeStatus(o)"
                 @click="update('Delivered')"
               >
-                <span><img class="svgsize" src="/delivered.svg"/></span>
+                <span>
+                  <img class="svgsize" src="/delivered.svg" />
+                </span>
                 <div>
                   <p
                     class="fntclr2"
@@ -89,14 +93,16 @@
                 class="circle"
                 v-bind:class="{
                   active4: o.status == 'CANCELLED',
-                  Cancelled: o.status == 'Cancelled'
+                  Cancelled: o.status == 'Cancelled',
                 }"
                 native-value="Cancelled"
                 type="is-danger"
                 @input="changeStatus(o)"
                 @click="update('Cancelled')"
               >
-                <span><img class="svgsize" src="/backcross.svg"/></span>
+                <span>
+                  <img class="svgsize" src="/backcross.svg" />
+                </span>
                 <div>
                   <p
                     class="fntclr3"
@@ -108,7 +114,7 @@
               </div>
             </div>
           </div>
-          <div class="border ">
+          <div class="border">
             <h5>ORDER ID: {{ o['.key'] }}</h5>
           </div>
           <div class="add_flex_align">
@@ -116,7 +122,10 @@
               <h1>{{ o.name }}</h1>
             </div>
             <div class="payment">
-              <span class="payment_color">Payment:<strong>COD</strong></span>
+              <span class="payment_color">
+                Payment:
+                <strong>COD</strong>
+              </span>
             </div>
           </div>
           <div class="add_flex_align">
@@ -128,14 +137,16 @@
             </div>
           </div>
         </div>
-        <div class="columns is-mobile border ">
+        <div class="columns is-mobile border">
           <div class="is-mobile" v-for="(i, ix) in o.items" :key="ix">
             <div class="media-content">
               <div class="align">
                 <div class="item_namealign">{{ ix + 1 }}.</div>
-                <div><img v-lazy="i.img" /></div>
+                <div>
+                  <img v-lazy="i.img" />
+                </div>
                 <div class="item_namealign">
-                  <strong>{{ i.name }} </strong>
+                  <strong>{{ i.name }}</strong>
                 </div>
                 <div class="item_namealign">
                   <strong>{{ i.price | currency }}</strong> x
@@ -168,31 +179,29 @@ export default {
   },
   firestore() {
     return {
-      orders: db.collection('orders').orderBy('createdAt', 'desc')
+      orders: db.collection('orders').orderBy('createdAt', 'desc'),
     }
   },
   computed: {
     user() {
       return (this.$store.state.auth || {}).user || null
-    }
+    },
   },
   methods: {
     update(updated) {
       console.log(updated)
     },
     changeStatus(o) {
-      db.collection('orders')
-        .doc(o['.key'])
-        .update({
-          status: o.status,
-          updatedAt: new Date()
-        })
+      db.collection('orders').doc(o['.key']).update({
+        status: o.status,
+        updatedAt: new Date(),
+      })
     },
     getStyle(o) {
       let style = ''
       return style
-    }
-  }
+    },
+  },
 }
 </script>
 <style scoped>

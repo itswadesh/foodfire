@@ -26,17 +26,17 @@ export default {
       loading: false,
       closed: true,
       settings: [],
-      products: [],
+      products: []
     }
   },
   firestore() {
     return {
       settings: db.collection('settings'),
-      products: db.collection('products'),
+      products: db.collection('products')
     }
   },
   methods: {},
   async created() {},
-  components: { Loading, Skeleton, Overlay, Products, Info, Hero, CartBar },
+  components: { Loading, Skeleton, Overlay, Products, Info, Hero, CartBar }
 }
 </script>
