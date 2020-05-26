@@ -2,6 +2,8 @@
 
 ## Static Generated Progressive food delivery web app using NuxtJS + Firebase
 
+<img src="https://i.imgur.com/v2B8eeD.gif" title="Production Video"/>
+
 ![Home Page](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/index.jpg?raw=true)
 ![Item Added](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/item-added.jpg?raw=true)
 ![Cart](https://github.com/itswadesh/foodfire/blob/master/static/screenshots/cart.jpg?raw=true)
