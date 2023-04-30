@@ -1,7 +1,7 @@
 {
   "name": "foodfire",
-  "version": "1.4.0",
-  "description": "Ready to use NuxtJS + Firebase Shopping APP for Food Ordering",
+  "version": "1.5.0",
+  "description": "Ready to use Nuxt + Firebase Shopping APP for Food Ordering",
   "author": "Swadesh Behera <swadesh@litekart.in>",
   "license": "MIT",
   "private": false,
@@ -21,18 +21,18 @@
     "@nuxtjs/toast": "^3.3.1",
     "cookie-universal-nuxt": "^2.2.2",
     "firebase": "^7.14.5",
+    "cross-env": "^7.0.3",
     "helmet": "^3.22.0",
     "nuxt": "^2.16.3",
-    "vue-firestore": "^0.3.30",
-    "vue-content-loader": "^2.0.1",
-    "core-js": "2",
-    "cross-env": "^7.0.3",
-    "vue-lazyload": "^1.3.3"
+    "vue-firestore": "^0.3.30"
   },
   "devDependencies": {
     "eslint": "^8.39.0",
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-import": "^2.27.5",
+    "core-js": "2",
+    "vue-content-loader": "^0.2.3",
+    "vue-lazyload": "^1.3.3",
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-promise": "^6.1.1",
@@ -44,10 +44,6 @@
       "host": "0.0.0.0",
       "port": "3000"
     }
-  },
-  "engines": {
-    "node": ">=10.x",
-    "npm": ">=6.x"
   },
   "browserslist": [
     "> 1%",

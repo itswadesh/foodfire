@@ -1,7 +1,7 @@
 import { ANALYTICS_TRACKING_ID, head, manifest } from './config'
 import helmet from 'helmet'
 module.exports = {
-  ssr: true,
+  ssr: false,
   head,
   manifest,
   loading: '~/components/Loading.vue',

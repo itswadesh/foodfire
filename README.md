@@ -1,6 +1,6 @@
 # FoodFire - Nuxt2.x + Fireabase + Vue2.x
 
-## Static Generated Progressive food delivery web app using NuxtJS + Firebase
+## Backendless Progressive food delivery web app using Nuxt + Firebase
 
 <img src="https://i.imgur.com/v2B8eeD.gif" title="Production Video"/>
 
@@ -15,7 +15,7 @@
 
 ## Quick start
 
-> Make sure you have **Node** version >= 10.x, **NPM** >= 6.x
+> Make sure you have **Node** version >= 10.x, **YARN** >= 2.x
 > Yarn version >= 1.x
 > Clone the repo
 > `git clone https://github.com/itswadesh/foodfire.git`
@@ -26,13 +26,15 @@
 cd foodfire
 ```
 
-### install the dependencies with npm
+### install the dependencies with yarn
 
 `yarn`
 
 ### serve with hot reload at localhost:3000
 
 `yarn dev`
+
+### You must be live of http://localhost:3000
 
 ## How to create a pull request
 
@@ -41,23 +43,15 @@ cd foodfire
 - Create a pull request
 - Merge into foodfire
 
-## Deploy to Netlify
+## Deployment
 
-<a href="https://app.netlify.com/start/deploy?repository=https://github.com/itswadesh/foodfire"><img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to Netlify"></a>
+Click on the button to directly deploy to Netlify or Vercel. Zero configuration required.
 
-### Getting Started
+<a href="https://app.netlify.com/start/deploy?repository=https://github.com/itswadesh/foodfire" aria-label="Click to deploy into netlify">
+<img src="https://www.netlify.com/img/deploy/button.svg" alt="Deploy to netlify">
+</a>
 
-> Press the "New site from Git" button on the Netlify dashboard. Authenticate with your repository host, select a repository to deploy, and continue. You should land on step 3: "Build options, and deploy!"
-
-### Configure:
-
-> Branch to deploy: `master`, or which-ever branch you prefer
-
-> Build command: `npm run generate`
-
-> Publish directory: `dist`
-
-> Add additional ENV variables via the "Advanced" button
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fitswadesh%2Ffoodfire&demo-title=Foodfire)
 
 ## Features
 
