@@ -1,7 +1,7 @@
 import { ANALYTICS_TRACKING_ID, head, manifest } from './config'
 import helmet from 'helmet'
 module.exports = {
-  mode: 'spa',
+  ssr: true,
   head,
   manifest,
   loading: '~/components/Loading.vue',
@@ -10,7 +10,7 @@ module.exports = {
     { src: '~plugins/init.js', mode: 'client' },
     { src: '~plugins/lazy', mode: 'client' },
     { src: '~plugins/filters.js' },
-    { src: '~plugins/firestore.js' }
+    { src: '~plugins/firestore.js' },
   ],
   modules: [
     '@nuxtjs/sitemap',
@@ -19,36 +19,36 @@ module.exports = {
     '@nuxtjs/toast',
     '@nuxtjs/robots',
     'cookie-universal-nuxt',
-    ['@nuxtjs/google-analytics', { id: ANALYTICS_TRACKING_ID }]
+    ['@nuxtjs/google-analytics', { id: ANALYTICS_TRACKING_ID }],
   ],
   toast: {
     theme: 'bubble',
     position: 'top-center',
-    singleton: true
+    singleton: true,
   },
   render: {
     gzip: { level: 1 },
     http2: { push: true },
     static: {
-      maxAge: '1y'
+      maxAge: '1y',
     },
     bundleRenderer: {
       shouldPreload: (file, type) => {
         if (type === 'script') {
           const ignoredRoutes = ['legal']
-          if (ignoredRoutes.some(r => file.includes(r))) {
+          if (ignoredRoutes.some((r) => file.includes(r))) {
             return false
           }
         }
         return ['script', 'style', 'font'].includes(type)
-      }
-    }
+      },
+    },
   },
 
   serverMiddleware: [
     helmet({
-      referrerPolicy: { policy: 'strict-origin-when-cross-origin' }
-    })
+      referrerPolicy: { policy: 'strict-origin-when-cross-origin' },
+    }),
   ],
 
   build: {
@@ -57,9 +57,9 @@ module.exports = {
     extractCSS: true,
     optimization: {
       splitChunks: {
-        name: true
-      }
-    }
+        name: true,
+      },
+    },
   },
   sitemap: {
     hostname: 'https://foodfire.info/',
@@ -67,6 +67,6 @@ module.exports = {
     cacheTime: 1000 * 60 * 15,
     gzip: true,
     generate: false,
-    exclude: ['/my/**']
-  }
+    exclude: ['/my/**'],
+  },
 }
