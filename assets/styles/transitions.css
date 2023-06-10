@@ -1,0 +1,35 @@
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.5s;
+}
+.page-enter,
+.page-leave-active {
+  opacity: 0;
+}
+.slide-left-enter,
+.slide-right-leave-active {
+  opacity: 0;
+  transform: translate(30px, 0);
+}
+.slide-left-leave-active,
+.slide-right-enter {
+  opacity: 0;
+  transform: translate(-30px, 0);
+}
+.green {
+  color: green;
+}
+.grey {
+  color: grey;
+}
+.pt3 {
+  padding-top: 3px;
+}
+.mb-36 {
+  margin-bottom: -36px;
+}
+.flex {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
